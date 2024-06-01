@@ -4,36 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/City Electric Transport Manager.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/postgresql_connection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/discount.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/repair.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/route.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/schedule.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/ticket.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/ticket_type.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/transport.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/transport_type.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/administrator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/authentication.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cashier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dispatcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/driver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="created a file directory and installed the necessary modules">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/postgresql_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/postgresql_connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main"
@@ -82,6 +57,19 @@
       <option name="presentableId" value="Default" />
       <updated>1717251558390</updated>
     </task>
+    <task id="LOCAL-00001" summary="created a file directory and installed the necessary modules">
+      <option name="closed" value="true" />
+      <created>1717252709604</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717252709604</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="created a file directory and installed the necessary modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="created a file directory and installed the necessary modules" />
   </component>
 </project>
