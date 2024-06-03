@@ -1,9 +1,9 @@
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QIcon, QPixmap, QCursor, QFontDatabase
-from PySide6.QtCore import Qt
-import sys
+from models.Employee import Employee
 
 
+# Настройки вікна програми
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -87,6 +87,7 @@ class MainWindow(QMainWindow):
         from DriverWidget import DriverWidget
         self.setCentralWidget(DriverWidget())
 
-    def show_cashier_widget(self):
+    # Функція переходу до функціонала Касира
+    def show_cashier_widget(self, employee):
         from CashierWidget import CashierWidget
-        self.setCentralWidget(CashierWidget(self))
+        self.setCentralWidget(CashierWidget(self, employee))

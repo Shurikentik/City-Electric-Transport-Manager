@@ -267,7 +267,7 @@ class LoginWidget(QWidget):
                 elif employee_position == "Водій":
                     main_window.show_driver_widget()
                 elif employee_position == "Касир":
-                    main_window.show_cashier_widget()
+                    main_window.show_cashier_widget(employee=employee)
                 else:
                     QMessageBox.critical(None, "Помилка", "Невідома посада користувача.")
             else:

@@ -5,7 +5,7 @@ from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
 
 
 class CashierWidget(QWidget):
-    def __init__(self, main_window):
+    def __init__(self, main_window, employee):
         super().__init__()
         self.main_window = main_window
 
@@ -65,7 +65,7 @@ class CashierWidget(QWidget):
         cashier_menu_layout = QVBoxLayout()
 
         # Надпис Вітання
-        welcome_label = QLabel(f"Вітаємо, ...")
+        welcome_label = QLabel(f"Вітаємо, {employee.full_name.split()[1]}")
         welcome_label.setStyleSheet(text_style)
         welcome_label.setFont(text_font1)
 
