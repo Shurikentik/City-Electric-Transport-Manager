@@ -1,6 +1,7 @@
-from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout
+from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QMessageBox
 from PySide6.QtGui import QPixmap, QFont, QIcon, QImage
 from PySide6.QtCore import Qt, QSize
+from data.postgresql_connection import Database, verify_login_password
 
 
 class LoginWidget(QWidget):
@@ -243,6 +244,46 @@ class LoginWidget(QWidget):
         # Підключення обробників подій для зміни курсора
         sign_in_button.enterEvent = main_window.on_enter_event
         sign_in_button.leaveEvent = main_window.on_leave_event
+
+        # Функція обробки події входу
+        def sign_in_button_clicked():
+            # Збираємо введені логін та пароль
+            login = input_login_line_edit.text().strip()
+            password = input_password_line_edit.text().strip()
+
+            # Якщо користувач не заповнив усі поля, вилізає повідомлення з відповідною помилкою
+            if login == "Логін" or password == "Пароль" or not login or not password:
+                QMessageBox.critical(None, "Помилка", "Будь ласка, заповніть усі поля.")
+                return
+
+            # Параметри для підключення до бази даних
+            db_params = {
+                'host': 'localhost',
+                'port': 5432,
+                'dbname': 'City Electric Transport',
+                'user': 'postgres',
+                'password': '3515'
+            }
+
+            # Верифікація користувача та визначення його посади
+            with Database(**db_params) as db:
+                employee_position = verify_login_password(db, login, password)
+                if employee_position:
+                    if employee_position == "Адміністратор":
+                        main_window.show_admin_widget()
+                    elif employee_position == "Диспетчер":
+                        main_window.show_dispatcher_widget()
+                    elif employee_position == "Водій":
+                        main_window.show_driver_widget()
+                    elif employee_position == "Касир":
+                        main_window.show_cashier_widget()
+                    else:
+                        QMessageBox.critical(None, "Помилка", "Невідома посада користувача.")
+                else:
+                    QMessageBox.critical(None, "Помилка", "Невірний логін або пароль.")
+
+        # Підключення кнопки до відповідної функції
+        sign_in_button.clicked.connect(sign_in_button_clicked)
 
         sign_in_button_layout = QHBoxLayout()
         sign_in_button_layout.addWidget(sign_in_button)

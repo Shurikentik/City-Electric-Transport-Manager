@@ -73,6 +73,20 @@ class MainWindow(QMainWindow):
 
     def show_login_widget(self):
         from LoginWidget import LoginWidget
-        login_widget = LoginWidget(self)
-        self.setCentralWidget(login_widget)
+        self.setCentralWidget(LoginWidget(self))
 
+    def show_admin_widget(self):
+        from AdminWidget import AdminWidget
+        self.setCentralWidget(AdminWidget())
+
+    def show_dispatcher_widget(self):
+        from DispatcherWidget import DispatcherWidget
+        self.setCentralWidget(DispatcherWidget())
+
+    def show_driver_widget(self):
+        from DriverWidget import DriverWidget
+        self.setCentralWidget(DriverWidget())
+
+    def show_cashier_widget(self):
+        from CashierWidget import CashierWidget
+        self.setCentralWidget(CashierWidget(self))
