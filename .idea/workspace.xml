@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added MainWindow and LoginWidget">
-      <change afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DriverWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/postgresql_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/postgresql_connection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/ConfirmExitDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cashier.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dispatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CashierWidget.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic to login and created widget for cashier">
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,13 +116,22 @@
       <option name="project" value="LOCAL" />
       <updated>1717353425682</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added logic to login and created widget for cashier">
+      <option name="closed" value="true" />
+      <created>1717419551768</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717419551768</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created a file directory and installed the necessary modules" />
     <MESSAGE value="added connection to database" />
     <MESSAGE value="added MainWindow and LoginWidget" />
-    <option name="LAST_COMMIT_MESSAGE" value="added MainWindow and LoginWidget" />
+    <MESSAGE value="added logic to login and created widget for cashier" />
+    <option name="LAST_COMMIT_MESSAGE" value="added logic to login and created widget for cashier" />
   </component>
 </project>
