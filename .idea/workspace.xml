@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added Benefit class">
-      <change afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717422087943</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)">
+      <option name="closed" value="true" />
+      <created>1717446611310</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717446611310</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -195,6 +203,7 @@
     <MESSAGE value="added TransportType class" />
     <MESSAGE value="added Tariff class" />
     <MESSAGE value="added Benefit class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Benefit class" />
+    <MESSAGE value="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)" />
   </component>
 </project>

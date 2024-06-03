@@ -14,6 +14,7 @@ class Employee:
         self.login = login
         self.employee_password = employee_password
 
+    # Функція хешування паролю
     @staticmethod
     def hash_password(password):
         password_bytes = password.encode('utf-8')
@@ -61,14 +62,19 @@ class Employee:
                 return Employee(*result[0])
             return None
 
+    # Функція верифікації логіну і паролю
     @staticmethod
-    def verify_login_password(db, login, password):
-        query = "SELECT employee_id, full_name, employee_position, address, phone_number, login, employee_password FROM employee WHERE login = %s"
-        params = (login,)
-        result = db.fetch_data(query, params)
-        if result:
-            employee_id, full_name, employee_position, address, phone_number, login, stored_password = result[0]
-            hashed_input_password = Employee.hash_password(password)
-            if hashed_input_password == stored_password:
-                return Employee(employee_id, full_name, employee_position, address, phone_number, login, stored_password)
+    def verify_login_password(login, password):
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            query = "SELECT employee_id, full_name, employee_position, address, phone_number, login, employee_password FROM employee WHERE login = %s"
+            params = (login,)
+            result = db.fetch_data(query, params)
+
+            if result:
+                employee_id, full_name, employee_position, address, phone_number, login, hashed_db_password = result[0]
+                hashed_input_password = Employee.hash_password(password)
+
+                if hashed_input_password == hashed_db_password:
+                    return Employee(employee_id, full_name, employee_position, address, phone_number, login,
+                                    hashed_db_password)
         return None
