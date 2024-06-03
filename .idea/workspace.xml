@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added Transport class">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added Route class">
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +220,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717449369353</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added Repair class">
+      <option name="closed" value="true" />
+      <created>1717449541740</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717449541740</updated>
+    </task>
+    <task id="LOCAL-00018" summary="added Route class">
+      <option name="closed" value="true" />
+      <created>1717449791874</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717449791874</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -238,6 +254,8 @@
     <MESSAGE value="added transferring employee to CashierWidget.py" />
     <MESSAGE value="added Ticket class" />
     <MESSAGE value="added Transport class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Transport class" />
+    <MESSAGE value="added Repair class" />
+    <MESSAGE value="added Route class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Route class" />
   </component>
 </project>
