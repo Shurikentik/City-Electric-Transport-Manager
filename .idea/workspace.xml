@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="changed logic in user_verification (in LoginWidget.py)">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added transferring employee to CashierWidget.py">
+      <change afterPath="$PROJECT_DIR$/models/Ticket.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CashierWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CashierWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717447354647</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added transferring employee to CashierWidget.py">
+      <option name="closed" value="true" />
+      <created>1717448297513</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717448297513</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -215,6 +221,7 @@
     <MESSAGE value="added Benefit class" />
     <MESSAGE value="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)" />
     <MESSAGE value="changed logic in user_verification (in LoginWidget.py)" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed logic in user_verification (in LoginWidget.py)" />
+    <MESSAGE value="added transferring employee to CashierWidget.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added transferring employee to CashierWidget.py" />
   </component>
 </project>
