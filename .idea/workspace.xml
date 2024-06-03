@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic to login and created widget for cashier">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added ValidityType class">
+      <change afterPath="$PROJECT_DIR$/models/TransportType.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +126,31 @@
       <option name="project" value="LOCAL" />
       <updated>1717419551768</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added database configurations">
+      <option name="closed" value="true" />
+      <created>1717420057883</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717420057883</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added ValidityType class">
+      <option name="closed" value="true" />
+      <created>1717420301241</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717420301242</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added ValidityType class">
+      <option name="closed" value="true" />
+      <created>1717420571922</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717420571922</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -132,6 +158,8 @@
     <MESSAGE value="added connection to database" />
     <MESSAGE value="added MainWindow and LoginWidget" />
     <MESSAGE value="added logic to login and created widget for cashier" />
-    <option name="LAST_COMMIT_MESSAGE" value="added logic to login and created widget for cashier" />
+    <MESSAGE value="added database configurations" />
+    <MESSAGE value="added ValidityType class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ValidityType class" />
   </component>
 </project>
