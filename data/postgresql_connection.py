@@ -1,6 +1,5 @@
 from tkinter import messagebox
 import psycopg2
-import hashlib
 
 
 # Клас для підключення до бази даних
@@ -60,45 +59,3 @@ class Database:
         except Exception as e:
             messagebox.showerror("Помилка", str(e))
             return None
-
-
-def hash_password(password):
-    # Перетворюємо пароль у байтовий об'єкт, оскільки хеш-функція очікує байти
-    password_bytes = password.encode('utf-8')
-
-    # Використовуємо SHA-256 для хешування паролю
-    hashed_password = hashlib.sha256(password_bytes).hexdigest()
-
-    return hashed_password
-
-
-def add_employee(db, full_name, position, address, phone_number, login, password):
-    hashed_password = hash_password(password)
-    query = """
-        INSERT INTO employee (full_name, employee_position, address, phone_number, login, employee_password)
-        VALUES (%s, %s, %s, %s, %s, %s)
-    """
-    params = (full_name, position, address, phone_number, login, hashed_password)
-    db.execute_query(query, params)
-
-
-def verify_login_password(db, login, password):
-    # Отримуємо дані з бази даних
-    query = "SELECT employee_position, employee_password FROM employee WHERE login = %s"
-    params = (login,)
-    result = db.fetch_data(query, params)
-
-    # Перевіряємо, чи отримали ми результат з бази даних
-    if result:
-        # Отримуємо з бази даних захешований пароль і посаду працівника
-        employee_position, hashed_db_password = result[0]
-
-        # Хешуємо пароль, який ввів користувач для порівняння з базовим
-        hashed_input_password = hash_password(password)
-
-        # Порівнюємо хешовані паролі
-        if hashed_input_password == hashed_db_password:
-            # Якщо паролі співпадають, повертаємо посаду працівника
-            return employee_position
-    # Якщо пароль не співпадає або користувача не знайдено, повертаємо None
-    return None
