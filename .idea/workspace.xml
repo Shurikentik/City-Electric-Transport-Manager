@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added transferring employee to CashierWidget.py">
-      <change afterPath="$PROJECT_DIR$/models/Ticket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added Transport class">
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +204,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717448297513</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added Ticket class">
+      <option name="closed" value="true" />
+      <created>1717449261521</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717449261521</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added Transport class">
+      <option name="closed" value="true" />
+      <created>1717449369353</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717449369353</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -222,6 +236,8 @@
     <MESSAGE value="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)" />
     <MESSAGE value="changed logic in user_verification (in LoginWidget.py)" />
     <MESSAGE value="added transferring employee to CashierWidget.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added transferring employee to CashierWidget.py" />
+    <MESSAGE value="added Ticket class" />
+    <MESSAGE value="added Transport class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Transport class" />
   </component>
 </project>
