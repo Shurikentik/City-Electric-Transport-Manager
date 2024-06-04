@@ -6,9 +6,10 @@ from PySide6.QtCore import Qt
 
 # Віджет для налаштування профілю
 class ProfileSettingsWidget(QWidget):
-    def __init__(self, parent=None, main_window=None, employee=None):
-        super().__init__(parent)
+    def __init__(self, main_window, employee):
+        super().__init__()
         self.employee = employee
+        self.main_window = main_window
 
         layout = QVBoxLayout()
 
@@ -20,7 +21,7 @@ class ProfileSettingsWidget(QWidget):
 
         # Іконка і текстове поле "ПІБ"
         # Іконка "ПІБ"
-        full_name_icon_pixmap = QPixmap("../../resources/icons/human_icon.svg").scaled(100, 100)
+        full_name_icon_pixmap = QPixmap("../resources/icons/human_icon.svg").scaled(100, 100)
         full_name_icon_label = QLabel()
         full_name_icon_label.setPixmap(full_name_icon_pixmap)
 
@@ -54,7 +55,7 @@ class ProfileSettingsWidget(QWidget):
 
         # Іконка і текстове поле "Адреса"
         # Іконка "Адреса"
-        address_icon_pixmap = QPixmap("../../resources/icons/home_icon.svg").scaled(100, 100)
+        address_icon_pixmap = QPixmap("../resources/icons/home_icon.svg").scaled(100, 100)
         address_icon_label = QLabel()
         address_icon_label.setPixmap(address_icon_pixmap)
 
@@ -87,7 +88,7 @@ class ProfileSettingsWidget(QWidget):
 
         # Іконка і текстове поле "Номер телефону"
         # Іконка "Номер телефону"
-        phone_number_icon_pixmap = QPixmap("../../resources/icons/phone_icon.svg").scaled(100, 100)
+        phone_number_icon_pixmap = QPixmap("../resources/icons/phone_icon.svg").scaled(100, 100)
         phone_number_icon_label = QLabel()
         phone_number_icon_label.setPixmap(phone_number_icon_pixmap)
 
@@ -114,7 +115,7 @@ class ProfileSettingsWidget(QWidget):
 
         # Кнопка "Оновити дані профілю"
         update_profile_button = QPushButton()
-        update_profile_button.setIcon(QIcon('../../resources/icons/wrench_icon.svg'))
+        update_profile_button.setIcon(QIcon("../resources/icons/wrench_icon.svg"))
         update_profile_button.setText("Оновити дані профілю")
         update_profile_button.setIconSize(update_profile_button.sizeHint() * 3)
         update_profile_button.setStyleSheet(button_style)
@@ -129,7 +130,7 @@ class ProfileSettingsWidget(QWidget):
         # Кнопки "Змінити пароль" та "Вийти з налаштувань"
         # Кнопка "Змінити пароль"
         update_password_button = QPushButton()
-        update_password_button.setIcon(QIcon('../../resources/icons/lock_icon.svg'))
+        update_password_button.setIcon(QIcon('../resources/icons/lock_icon.svg'))
         update_password_button.setText("Змінити пароль")
         update_password_button.setIconSize(update_password_button.sizeHint() * 3)
         update_password_button.setStyleSheet(button_style)
@@ -143,7 +144,7 @@ class ProfileSettingsWidget(QWidget):
 
         # Кнопка "Вийти з налаштувань"
         exit_settings_button = QPushButton()
-        exit_settings_button.setIcon(QIcon('../../resources/icons/cancel_icon.svg'))
+        exit_settings_button.setIcon(QIcon('../resources/icons/cancel_icon.svg'))
         exit_settings_button.setText("Вийти з налаштувань")
         exit_settings_button.setIconSize(exit_settings_button.sizeHint() * 3)
         exit_settings_button.setStyleSheet(button_style)
@@ -155,15 +156,6 @@ class ProfileSettingsWidget(QWidget):
         exit_settings_button.enterEvent = main_window.on_enter_event
         exit_settings_button.leaveEvent = main_window.on_leave_event
 
-        # Об'єднання кнопок "Змінити пароль" та "Вийти з налаштувань" по горизонталі
-        update_password_and_exit_settings_layout = QHBoxLayout()
-        update_password_and_exit_settings_layout.addWidget(update_password_button)
-        update_password_and_exit_settings_layout.addWidget(exit_settings_button)
-        update_password_and_exit_settings_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-
-        update_password_and_exit_settings_widget = QWidget()
-        update_password_and_exit_settings_widget.setLayout(update_password_and_exit_settings_layout)
-
         # Додавання усіх елементів до віджету
         layout.addWidget(full_name_label)
         layout.addWidget(full_name_widget)
@@ -172,7 +164,10 @@ class ProfileSettingsWidget(QWidget):
         layout.addWidget(phone_number_label)
         layout.addWidget(phone_number_widget)
         layout.addWidget(update_profile_button)
-        layout.addWidget(update_password_and_exit_settings_widget)
+        layout.addWidget(update_password_button)
+        layout.addWidget(exit_settings_button)
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.setSpacing(30)
         self.setLayout(layout)
 
     # Обробка події натискання кнопки "Оновити профіль"
@@ -185,4 +180,4 @@ class ProfileSettingsWidget(QWidget):
 
     # Обробка події натискання кнопки "Вийти з налаштувань"
     def exit_settings_widget(self):
-        print()
+        self.main_window.show_cashier_widget(employee=self.employee)

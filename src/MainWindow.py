@@ -90,3 +90,8 @@ class MainWindow(QMainWindow):
     def show_cashier_widget(self, employee):
         from CashierWidget import CashierWidget
         self.setCentralWidget(CashierWidget(self, employee))
+
+    # Переключення на вікно налаштувань
+    def show_profile_settings_widget(self, employee):
+        from AdditionalWindows.ProfileSettingsWidget import ProfileSettingsWidget
+        self.setCentralWidget(ProfileSettingsWidget(self, employee))

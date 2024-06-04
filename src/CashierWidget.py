@@ -7,6 +7,7 @@ from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
 class CashierWidget(QWidget):
     def __init__(self, main_window, employee):
         super().__init__()
+        self.employee = employee
         self.main_window = main_window
 
         # Стилі
@@ -54,18 +55,11 @@ class CashierWidget(QWidget):
         cashier_picture_pixmap = QPixmap(scaled_image)
         cashier_picture_label.setPixmap(cashier_picture_pixmap)
 
-        cashier_picture_layout = QHBoxLayout()
-        cashier_picture_layout.addWidget(cashier_picture_label)
-        cashier_picture_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        cashier_picture_widget = QWidget()
-        cashier_picture_widget.setLayout(cashier_picture_layout)
-
         # Додавання меню
         cashier_menu_layout = QVBoxLayout()
 
         # Надпис Вітання
-        welcome_label = QLabel(f"Вітаємо, {employee.full_name.split()[1]}")
+        welcome_label = QLabel(f"Вітаємо, {self.employee.full_name.split()[1]}")
         welcome_label.setStyleSheet(text_style)
         welcome_label.setFont(text_font1)
 
@@ -84,6 +78,7 @@ class CashierWidget(QWidget):
         change_profile_button.setFont(text_font2)
         change_profile_button.setFixedWidth(1100)
         change_profile_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        change_profile_button.clicked.connect(self.open_profile_settings)
 
         # Підключення обробників подій для зміни курсора
         change_profile_button.enterEvent = main_window.on_enter_event
@@ -149,8 +144,9 @@ class CashierWidget(QWidget):
         cashier_menu_widget.setLayout(cashier_menu_layout)
 
         cashier_layout = QHBoxLayout()
-        cashier_layout.addWidget(cashier_picture_widget)
         cashier_layout.addWidget(cashier_menu_widget)
+        cashier_layout.addWidget(cashier_picture_label)
+        cashier_layout.setSpacing(60)
         self.setLayout(cashier_layout)
 
     # Обробка події при натисканні кнопки "Вийти із облікового запису"
@@ -158,3 +154,7 @@ class CashierWidget(QWidget):
         dialog = ConfirmExitDialog()
         if dialog.exec() == QDialog.Accepted:
             self.main_window.show_login_widget()
+
+    # Обробка події при натисканні кнопки "Налаштування профілю"
+    def open_profile_settings(self):
+        self.main_window.show_profile_settings_widget(employee=self.employee)
