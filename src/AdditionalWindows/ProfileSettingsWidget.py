@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit
-from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit, QMessageBox
+from PySide6.QtGui import QIcon, QImage
 from src.styles import *
 from PySide6.QtCore import Qt
 
@@ -11,7 +11,17 @@ class ProfileSettingsWidget(QWidget):
         self.employee = employee
         self.main_window = main_window
 
-        layout = QVBoxLayout()
+        # Ініціалізація головної розмітки
+        main_layout = QHBoxLayout()
+
+        # Ініціалізація розмітки налаштувань
+        profile_settings_layout = QVBoxLayout()
+
+        # Надпис "Прізвище, ім'я, по-батькові"
+        settings_label = QLabel("Налаштування профілю")
+        settings_label.setStyleSheet(text_style)
+        settings_label.setFont(text_font2)
+        settings_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
         # Надпис "Прізвище, ім'я, по-батькові"
         full_name_label = QLabel("Прізвище, ім'я, по-батькові")
@@ -121,7 +131,22 @@ class ProfileSettingsWidget(QWidget):
         update_profile_button.setStyleSheet(button_style)
         update_profile_button.setFont(text_font2)
         update_profile_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        update_profile_button.clicked.connect(self.update_profile)
+
+        # Обробка події натискання кнопки "Оновити профіль"
+        def update_profile():
+            # Збирання даних з текстових полів
+            self.employee.full_name = full_name_line_edit.text().strip()
+            self.employee.address = address_line_edit.text().strip()
+            self.employee.phone_number = phone_number_line_edit.text().strip()
+
+            # Оновлення даних
+            try:
+                self.employee.update()
+                QMessageBox.information(None, "Профіль оновлено", "Профіль успішно оновлено!")
+            except Exception as e:
+                QMessageBox.critical(None, "Помилка оновлення", f"Помилка при оновленні профілю: {e}")
+
+        update_profile_button.clicked.connect(update_profile)
 
         # Підключення обробників подій для зміни курсора
         update_profile_button.enterEvent = main_window.on_enter_event
@@ -156,23 +181,42 @@ class ProfileSettingsWidget(QWidget):
         exit_settings_button.enterEvent = main_window.on_enter_event
         exit_settings_button.leaveEvent = main_window.on_leave_event
 
-        # Додавання усіх елементів до віджету
-        layout.addWidget(full_name_label)
-        layout.addWidget(full_name_widget)
-        layout.addWidget(address_label)
-        layout.addWidget(address_widget)
-        layout.addWidget(phone_number_label)
-        layout.addWidget(phone_number_widget)
-        layout.addWidget(update_profile_button)
-        layout.addWidget(update_password_button)
-        layout.addWidget(exit_settings_button)
-        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.setSpacing(30)
-        self.setLayout(layout)
+        # Додавання усіх елементів до розмітки налаштувань
+        profile_settings_layout.addWidget(settings_label)
+        profile_settings_layout.addWidget(full_name_label)
+        profile_settings_layout.addWidget(full_name_widget)
+        profile_settings_layout.addWidget(address_label)
+        profile_settings_layout.addWidget(address_widget)
+        profile_settings_layout.addWidget(phone_number_label)
+        profile_settings_layout.addWidget(phone_number_widget)
+        profile_settings_layout.addWidget(update_profile_button)
+        profile_settings_layout.addWidget(update_password_button)
+        profile_settings_layout.addWidget(exit_settings_button)
+        profile_settings_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        profile_settings_layout.setSpacing(23)
 
-    # Обробка події натискання кнопки "Оновити профіль"
-    def update_profile(self):
-        print()
+        # Створення віджету для розмітки налаштувань
+        profile_settings_widget = QWidget()
+        profile_settings_widget.setLayout(profile_settings_layout)
+
+        # Додавання картинки
+        picture_label = QLabel()
+        picture_image = QImage("../resources/icons/profile_settings.png")
+
+        # Збільшення зображення
+        scaled_image = picture_image.scaled(
+            int(picture_image.width() * 2.5),
+            int(picture_image.height() * 2.5),
+            Qt.AspectRatioMode.KeepAspectRatio
+        )
+        tram_picture_pixmap = QPixmap(scaled_image)
+        picture_label.setPixmap(tram_picture_pixmap)
+
+        # Додавання до головної розмітки налаштувань і картинки
+        main_layout.addWidget(profile_settings_widget)
+        main_layout.addWidget(picture_label)
+
+        self.setLayout(main_layout)
 
     # Обробка події натискання кнопки "Змінити пароль"
     def update_password_open(self):
