@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QIcon, QPixmap, QCursor, QFontDatabase
-from models.Employee import Employee
 
 
 # Настройки вікна програми
