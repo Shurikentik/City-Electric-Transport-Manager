@@ -95,3 +95,8 @@ class MainWindow(QMainWindow):
     def show_profile_settings_widget(self, employee):
         from AdditionalWindows.ProfileSettingsWidget import ProfileSettingsWidget
         self.setCentralWidget(ProfileSettingsWidget(self, employee))
+
+    # Переключення на вікно зміни паролю
+    def show_updating_password_widget(self, employee):
+        from AdditionalWindows.UpdatePasswordWidget import UpdatePasswordWidget
+        self.setCentralWidget(UpdatePasswordWidget(self, employee))

@@ -17,7 +17,7 @@ class ProfileSettingsWidget(QWidget):
         # Ініціалізація розмітки налаштувань
         profile_settings_layout = QVBoxLayout()
 
-        # Надпис "Прізвище, ім'я, по-батькові"
+        # Надпис "Налаштування профілю"
         settings_label = QLabel("Налаштування профілю")
         settings_label.setStyleSheet(text_style)
         settings_label.setFont(text_font2)
@@ -220,7 +220,7 @@ class ProfileSettingsWidget(QWidget):
 
     # Обробка події натискання кнопки "Змінити пароль"
     def update_password_open(self):
-        print()
+        self.main_window.show_updating_password_widget(employee=self.employee)
 
     # Обробка події натискання кнопки "Вийти з налаштувань"
     def exit_settings_widget(self):
