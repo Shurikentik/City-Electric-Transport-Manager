@@ -47,6 +47,22 @@ class Employee:
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
             db.execute_query(query, (self.employee_id,))
 
+    # Метод для оновлення паролю
+    def update_password(self, old_password, new_password):
+        # Перевіряється старий введений пароль
+        if not Employee.hash_password(old_password) == self.employee_password:
+            raise ValueError("The old password entered does not match the valid password")
+        # Хешується і встановлюється новий заданий пароль
+        hashed_new_password = Employee.hash_password(new_password)
+        self.employee_password = hashed_new_password
+        # Оновлюється пароль у таблиці бази даних
+        query = """
+                    UPDATE employee SET employee_password = %s
+                    WHERE employee_id = %s
+                """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            db.execute_query(query, (self.employee_password, self.employee_id))
+
     @staticmethod
     def get_all():
         query = "SELECT * FROM employee"

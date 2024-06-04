@@ -156,6 +156,26 @@ class UpdatePasswordWidget(QWidget):
         update_password_button.setFont(text_font2)
         update_password_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
 
+        # Функція обробки події натискання кнопки "Змінити пароль"
+        def update_password_button_clicked():
+            # Збираємо дані з текстових полів
+            old_password = input_old_password_line_edit.text().strip()
+            new_password = input_new_password_line_edit.text().strip()
+
+            # Якщо користувач не заповнив усі поля, вилізає повідомлення з відповідною помилкою
+            if old_password == "Старий пароль" or new_password == "Новий пароль" or not old_password or not new_password:
+                QMessageBox.critical(None, "Помилка", "Будь ласка, заповніть усі поля.")
+                return
+
+            # Оновлення паролю
+            try:
+                self.employee.update_password(old_password, new_password)
+                QMessageBox.information(None, "Пароль змінено", "Пароль успішно змінено!")
+            except Exception as e:
+                QMessageBox.critical(None, "Помилка зміни", f"Помилка при зміні паролю: {e}")
+
+        update_password_button.clicked.connect(update_password_button_clicked)
+
         # Підключення обробників подій для зміни курсора
         update_password_button.enterEvent = main_window.on_enter_event
         update_password_button.leaveEvent = main_window.on_leave_event
