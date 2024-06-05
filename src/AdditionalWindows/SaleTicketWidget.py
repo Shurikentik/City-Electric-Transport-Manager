@@ -1,7 +1,11 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit, QMessageBox
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit, QMessageBox, QComboBox
 from PySide6.QtGui import QIcon, QImage
 from src.styles import *
 from PySide6.QtCore import Qt
+from models.TransportType import TransportType
+from models.ValidityType import ValidityType
+from models.Benefit import Benefit
+from models.Ticket import Ticket
 
 
 # Віджет для налаштування профілю
@@ -10,6 +14,9 @@ class SaleTicketWidget(QWidget):
         super().__init__()
         self.employee = employee
         self.main_window = main_window
+        self.transport_type_id = -1
+        self.validity_type_id = -1
+        self.benefit_id = -1
 
         # Ініціалізація основного макету
         main_layout = QHBoxLayout()
@@ -35,11 +42,45 @@ class SaleTicketWidget(QWidget):
         transport_icon_label = QLabel()
         transport_icon_label.setPixmap(transport_icon_pixmap)
 
+        # Випадаючий список вибору типу електротранспорту
+        transport_type_combobox = QComboBox()
+        transport_type_combobox.setStyleSheet(combo_box_style)
+        transport_type_combobox.setFont(text_font6)
+        transport_type_combobox.setEditable(False)
+        transport_type_combobox.setCursor(main_window.click_cursor)
+        transport_type_combobox.setFixedWidth(300)
+        transport_type_combobox.setFixedHeight(65)
+
+        # Встановлення елементів списку
+        transport_types = TransportType.get_all()
+        transport_type_names = [transport_type.transport_name for transport_type in transport_types]
+        transport_type_combobox.addItems(transport_type_names)
+        transport_type_combobox.setCurrentIndex(-1)
+
+        # Поєднання елементів списку з індексами
+        transport_type_index_map = {}
+        for i, transport_type in enumerate(transport_types):
+            transport_type_index_map[transport_type.transport_name] = i
+
+        # Функція переключення типів транспорту
+        def transport_type_combobox_change(text):
+            transport_type_index = transport_type_index_map.get(text)
+            if transport_type_index is not None:
+                self.transport_type_id = transport_types[transport_type_index].transport_type_id
+
+        # Підключення функції до комбобоксу
+        transport_type_combobox.currentTextChanged.connect(transport_type_combobox_change)
+
+        # Функції зміни курсора
+        transport_type_combobox.enterEvent = main_window.on_enter_event
+        transport_type_combobox.leaveEvent = main_window.on_leave_event
+
         # Об'єднання рядку обирання типу електротранспорту
         pick_transport_type_layout = QHBoxLayout()
         pick_transport_type_layout.addWidget(transport_icon_label)
+        pick_transport_type_layout.addWidget(transport_type_combobox)
         pick_transport_type_layout.setSpacing(20)
-        pick_transport_type_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        pick_transport_type_layout.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         pick_transport_type_widget = QWidget()
         pick_transport_type_widget.setLayout(pick_transport_type_layout)
@@ -56,11 +97,45 @@ class SaleTicketWidget(QWidget):
         validity_icon_label = QLabel()
         validity_icon_label.setPixmap(validity_icon_pixmap)
 
+        # Випадаючий список вибору типу чинності квитка
+        validity_type_combobox = QComboBox()
+        validity_type_combobox.setStyleSheet(combo_box_style)
+        validity_type_combobox.setFont(text_font6)
+        validity_type_combobox.setEditable(False)
+        validity_type_combobox.setCursor(main_window.click_cursor)
+        validity_type_combobox.setFixedWidth(300)
+        validity_type_combobox.setFixedHeight(65)
+
+        # Встановлення елементів списку
+        validity_types = ValidityType.get_all()
+        validity_type_names = [validity_type.validity_name for validity_type in validity_types]
+        validity_type_combobox.addItems(validity_type_names)
+        validity_type_combobox.setCurrentIndex(-1)
+
+        # Поєднання елементів списку з індексами
+        validity_type_index_map = {}
+        for i, validity_type in enumerate(validity_types):
+            validity_type_index_map[validity_type.validity_name] = i
+
+        # Функція переключення типів терміну чинності
+        def validity_type_combobox_change(text):
+            validity_type_index = validity_type_index_map.get(text)
+            if validity_type_index is not None:
+                self.validity_type_id = validity_types[validity_type_index].validity_type_id
+
+        # Підключення функції до комбобоксу
+        validity_type_combobox.currentTextChanged.connect(validity_type_combobox_change)
+
+        # Функції зміни курсора
+        validity_type_combobox.enterEvent = main_window.on_enter_event
+        validity_type_combobox.leaveEvent = main_window.on_leave_event
+
         # Об'єднання рядку обирання типу чинності квитка
         pick_validity_type_layout = QHBoxLayout()
         pick_validity_type_layout.addWidget(validity_icon_label)
+        pick_validity_type_layout.addWidget(validity_type_combobox)
         pick_validity_type_layout.setSpacing(20)
-        pick_validity_type_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        pick_validity_type_layout.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         pick_validity_type_widget = QWidget()
         pick_validity_type_widget.setLayout(pick_validity_type_layout)
@@ -77,11 +152,45 @@ class SaleTicketWidget(QWidget):
         benefit_icon_label = QLabel()
         benefit_icon_label.setPixmap(benefit_icon_pixmap)
 
+        # Випадаючий список вибору пільги
+        benefit_combobox = QComboBox()
+        benefit_combobox.setStyleSheet(combo_box_style)
+        benefit_combobox.setFont(text_font6)
+        benefit_combobox.setEditable(False)
+        benefit_combobox.setCursor(main_window.click_cursor)
+        benefit_combobox.setFixedWidth(300)
+        benefit_combobox.setFixedHeight(65)
+
+        # Встановлення елементів списку
+        benefits = Benefit.get_all()
+        benefit_names = [benefit.benefit_name for benefit in benefits]
+        benefit_combobox.addItems(benefit_names)
+        benefit_combobox.setCurrentIndex(-1)
+
+        # Поєднання елементів списку з індексами
+        benefit_index_map = {}
+        for i, benefit in enumerate(benefits):
+            benefit_index_map[benefit.benefit_name] = i
+
+        # Функція переключення пільг
+        def benefit_combobox_change(text):
+            benefit_index = benefit_index_map.get(text)
+            if benefit_index is not None:
+                self.benefit_id = benefits[benefit_index].benefit_id
+
+        # Підключення функції до комбобоксу
+        benefit_combobox.currentTextChanged.connect(benefit_combobox_change)
+
+        # Функції зміни курсора
+        benefit_combobox.enterEvent = main_window.on_enter_event
+        benefit_combobox.leaveEvent = main_window.on_leave_event
+
         # Об'єднання рядку обирання типу пільги
         pick_benefit_type_layout = QHBoxLayout()
         pick_benefit_type_layout.addWidget(benefit_icon_label)
+        pick_benefit_type_layout.addWidget(benefit_combobox)
         pick_benefit_type_layout.setSpacing(20)
-        pick_benefit_type_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        pick_benefit_type_layout.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         pick_benefit_type_widget = QWidget()
         pick_benefit_type_widget.setLayout(pick_benefit_type_layout)

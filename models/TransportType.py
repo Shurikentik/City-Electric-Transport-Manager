@@ -4,22 +4,21 @@ from data.db_config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
 
 # Клас "Тип транспорту"
 class TransportType:
-    def __init__(self, transport_type_id=None, transport_name=None, price_per_type=None):
+    def __init__(self, transport_type_id=None, transport_name=None):
         self.transport_type_id = transport_type_id
         self.transport_name = transport_name
-        self.price_per_type = price_per_type
 
     def save(self):
-        query = "INSERT INTO TransportType (transport_name, price_per_type) VALUES (%s, %s) RETURNING transport_type_id"
+        query = "INSERT INTO TransportType (transport_name) VALUES (%s) RETURNING transport_type_id"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.transport_type_id = db.execute_query(query, (self.transport_name, self.price_per_type))[0][0]
+            self.transport_type_id = db.execute_query(query, (self.transport_name,))[0][0]
 
     def update(self):
         if not self.transport_type_id:
             raise ValueError("Cannot update record without transport_type_id")
-        query = "UPDATE TransportType SET transport_name = %s, price_per_type = %s WHERE transport_type_id = %s"
+        query = "UPDATE TransportType SET transport_name = %s WHERE transport_type_id = %s"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            db.execute_query(query, (self.transport_name, self.price_per_type, self.transport_type_id))
+            db.execute_query(query, (self.transport_name, self.transport_type_id))
 
     def delete(self):
         if not self.transport_type_id:

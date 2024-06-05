@@ -43,6 +43,21 @@ text_line_style = """
                     background-color: rgba(255, 255, 255, 0.25);
                 """
 
+combo_box_style = """
+    QComboBox {
+        border-radius: 7px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: white;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+    QComboBox::item {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+"""
+
 # Шрифти
 text_font1 = QFont()
 text_font1.setFamily("appetite")
