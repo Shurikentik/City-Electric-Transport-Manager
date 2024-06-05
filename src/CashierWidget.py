@@ -99,6 +99,7 @@ class CashierWidget(QWidget):
         sale_ticket_button.setFont(text_font2)
         sale_ticket_button.setFixedWidth(1100)
         sale_ticket_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        sale_ticket_button.clicked.connect(self.open_sale_ticket)
 
         # Підключення обробників подій для зміни курсора
         sale_ticket_button.enterEvent = main_window.on_enter_event
@@ -149,12 +150,16 @@ class CashierWidget(QWidget):
         cashier_layout.setSpacing(60)
         self.setLayout(cashier_layout)
 
+    # Обробка події при натисканні кнопки "Налаштування профілю"
+    def open_profile_settings(self):
+        self.main_window.show_profile_settings_widget(employee=self.employee)
+
+    # Обробка події при натисканні кнопки "Оформити продаж квитка"
+    def open_sale_ticket(self):
+        self.main_window.show_sale_ticket_widget(employee=self.employee)
+
     # Обробка події при натисканні кнопки "Вийти із облікового запису"
     def exit_profile(self):
         dialog = ConfirmExitDialog()
         if dialog.exec() == QDialog.Accepted:
             self.main_window.show_login_widget()
-
-    # Обробка події при натисканні кнопки "Налаштування профілю"
-    def open_profile_settings(self):
-        self.main_window.show_profile_settings_widget(employee=self.employee)

@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added UpdatePasswordWidget.py">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic for updating password">
+      <change afterPath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/ProfileSettingsWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/ProfileSettingsWidget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/UpdatePasswordWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/UpdatePasswordWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CashierWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CashierWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717518747661</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added logic for updating password">
+      <option name="closed" value="true" />
+      <created>1717521000621</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717521000621</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -294,6 +306,7 @@
     <MESSAGE value="changed logic in switching ProfileSettingsWidget.py and CashierWidget.py" />
     <MESSAGE value="added logic to updating profile" />
     <MESSAGE value="added UpdatePasswordWidget.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added UpdatePasswordWidget.py" />
+    <MESSAGE value="added logic for updating password" />
+    <option name="LAST_COMMIT_MESSAGE" value="added logic for updating password" />
   </component>
 </project>

@@ -20,13 +20,13 @@ class ProfileSettingsWidget(QWidget):
         # Надпис "Налаштування профілю"
         settings_label = QLabel("Налаштування профілю")
         settings_label.setStyleSheet(text_style)
-        settings_label.setFont(text_font2)
+        settings_label.setFont(text_font5)
         settings_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
         # Надпис "Прізвище, ім'я, по-батькові"
         full_name_label = QLabel("Прізвище, ім'я, по-батькові")
         full_name_label.setStyleSheet(text_style)
-        full_name_label.setFont(text_font2)
+        full_name_label.setFont(text_font5)
         full_name_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         # Іконка і текстове поле "ПІБ"
@@ -60,7 +60,7 @@ class ProfileSettingsWidget(QWidget):
         # Надпис "Прізвище, ім'я, по-батькові
         address_label = QLabel("Адреса")
         address_label.setStyleSheet(text_style)
-        address_label.setFont(text_font2)
+        address_label.setFont(text_font5)
         address_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         # Іконка і текстове поле "Адреса"
@@ -93,7 +93,7 @@ class ProfileSettingsWidget(QWidget):
         # Надпис "Номер телефону"
         phone_number_label = QLabel("Номер телефону")
         phone_number_label.setStyleSheet(text_style)
-        phone_number_label.setFont(text_font2)
+        phone_number_label.setFont(text_font5)
         phone_number_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         # Іконка і текстове поле "Номер телефону"
@@ -129,7 +129,7 @@ class ProfileSettingsWidget(QWidget):
         update_profile_button.setText("Оновити дані профілю")
         update_profile_button.setIconSize(update_profile_button.sizeHint() * 3)
         update_profile_button.setStyleSheet(button_style)
-        update_profile_button.setFont(text_font2)
+        update_profile_button.setFont(text_font5)
         update_profile_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
 
         # Обробка події натискання кнопки "Оновити профіль"
@@ -159,7 +159,7 @@ class ProfileSettingsWidget(QWidget):
         update_password_button.setText("Змінити пароль")
         update_password_button.setIconSize(update_password_button.sizeHint() * 3)
         update_password_button.setStyleSheet(button_style)
-        update_password_button.setFont(text_font2)
+        update_password_button.setFont(text_font5)
         update_password_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         update_password_button.clicked.connect(self.update_password_open)
 
@@ -173,7 +173,7 @@ class ProfileSettingsWidget(QWidget):
         exit_settings_button.setText("Вийти з налаштувань")
         exit_settings_button.setIconSize(exit_settings_button.sizeHint() * 3)
         exit_settings_button.setStyleSheet(button_style)
-        exit_settings_button.setFont(text_font2)
+        exit_settings_button.setFont(text_font5)
         exit_settings_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         exit_settings_button.clicked.connect(self.exit_settings_widget)
 

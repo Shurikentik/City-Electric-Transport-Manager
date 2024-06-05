@@ -91,6 +91,11 @@ class MainWindow(QMainWindow):
         from CashierWidget import CashierWidget
         self.setCentralWidget(CashierWidget(self, employee))
 
+    # Функція переходу до вікна оформлення продажу квитка
+    def show_sale_ticket_widget(self, employee):
+        from AdditionalWindows.SaleTicketWidget import SaleTicketWidget
+        self.setCentralWidget(SaleTicketWidget(self, employee))
+
     # Переключення на вікно налаштувань
     def show_profile_settings_widget(self, employee):
         from AdditionalWindows.ProfileSettingsWidget import ProfileSettingsWidget

@@ -4,7 +4,7 @@ from src.styles import *
 from PySide6.QtCore import Qt, QSize
 
 
-# Віджет для налаштування профілю
+# Віджет для зміни пароля
 class UpdatePasswordWidget(QWidget):
     def __init__(self, main_window, employee):
         super().__init__()
@@ -20,13 +20,13 @@ class UpdatePasswordWidget(QWidget):
         # Надпис "Зміна пароля"
         updating_label = QLabel("Зміна паролю")
         updating_label.setStyleSheet(text_style)
-        updating_label.setFont(text_font2)
+        updating_label.setFont(text_font5)
         updating_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
         # Надпис "Введіть старий пароль"
         old_password_label = QLabel("Введіть старий пароль")
         old_password_label.setStyleSheet(text_style)
-        old_password_label.setFont(text_font2)
+        old_password_label.setFont(text_font5)
         old_password_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         # Рядок для введення старого паролю
@@ -88,7 +88,7 @@ class UpdatePasswordWidget(QWidget):
         # Надпис "Введіть новий пароль"
         new_password_label = QLabel("Введіть новий пароль")
         new_password_label.setStyleSheet(text_style)
-        new_password_label.setFont(text_font2)
+        new_password_label.setFont(text_font5)
         new_password_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
 
         # Рядок для введення нового паролю
@@ -153,7 +153,7 @@ class UpdatePasswordWidget(QWidget):
         update_password_button.setText("Змінити пароль")
         update_password_button.setIconSize(update_password_button.sizeHint() * 3)
         update_password_button.setStyleSheet(button_style)
-        update_password_button.setFont(text_font2)
+        update_password_button.setFont(text_font5)
         update_password_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
 
         # Функція обробки події натискання кнопки "Змінити пароль"
@@ -186,7 +186,7 @@ class UpdatePasswordWidget(QWidget):
         exit_updating_password_button.setText("Відмінити")
         exit_updating_password_button.setIconSize(exit_updating_password_button.sizeHint() * 3)
         exit_updating_password_button.setStyleSheet(button_style)
-        exit_updating_password_button.setFont(text_font2)
+        exit_updating_password_button.setFont(text_font5)
         exit_updating_password_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         exit_updating_password_button.clicked.connect(self.exit_updating_password_widget)
 
