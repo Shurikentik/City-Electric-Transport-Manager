@@ -1,11 +1,12 @@
 from models.Ticket import Ticket
 from models.Tariff import Tariff
+from datetime import datetime
 
 
 # Клас-контроллер для оформлення продажів квитків
 class TicketController:
     # Функція ініціалізації об'єкта класу
-    def __init__(self, transport_type_id, validity_type_id, benefit=None):
+    def __init__(self, transport_type_id=None, validity_type_id=None, benefit=None):
         self.transport_type_id = transport_type_id
         self.validity_type_id = validity_type_id
         self.benefit = benefit
@@ -23,6 +24,7 @@ class TicketController:
     # Функція отримання ціни на квиток з урахуванням діючого тарифу та можливих пільг
     def get_ticket_price(self) -> float:
         if self.benefit:
+            self.ticket.benefit_id = self.benefit.benefit_id
             self.ticket.apply_benefit(self.benefit)
         return self.ticket.price
 
@@ -31,5 +33,7 @@ class TicketController:
         return self.ticket.get_rest(self.tariff, passed_money)
 
     # Функція реєстрації продажу квитка у базі даних
-    def save_sale(self) -> None:
+    def save_sale(self, employee) -> None:
+        self.ticket.sale_date = datetime.now().date()
+        self.ticket.employee_id = employee.employee_id
         self.ticket.save()

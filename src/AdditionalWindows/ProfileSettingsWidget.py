@@ -142,9 +142,9 @@ class ProfileSettingsWidget(QWidget):
             # Оновлення даних
             try:
                 self.employee.update()
-                QMessageBox.information(None, "Профіль оновлено", "Профіль успішно оновлено!")
+                QMessageBox.information(self, "Профіль оновлено", "Профіль успішно оновлено!")
             except Exception as e:
-                QMessageBox.critical(None, "Помилка оновлення", f"Помилка при оновленні профілю: {e}")
+                QMessageBox.critical(self, "Помилка оновлення", f"Помилка при оновленні профілю: {e}")
 
         update_profile_button.clicked.connect(update_profile)
 

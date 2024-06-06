@@ -164,15 +164,15 @@ class UpdatePasswordWidget(QWidget):
 
             # Якщо користувач не заповнив усі поля, вилізає повідомлення з відповідною помилкою
             if old_password == "Старий пароль" or new_password == "Новий пароль" or not old_password or not new_password:
-                QMessageBox.critical(None, "Помилка", "Будь ласка, заповніть усі поля.")
+                QMessageBox.critical(self, "Помилка", "Будь ласка, заповніть усі поля.")
                 return
 
             # Оновлення паролю
             try:
                 self.employee.update_password(old_password, new_password)
-                QMessageBox.information(None, "Пароль змінено", "Пароль успішно змінено!")
+                QMessageBox.information(self, "Пароль змінено", "Пароль успішно змінено!")
             except Exception as e:
-                QMessageBox.critical(None, "Помилка зміни", f"Помилка при зміні паролю: {e}")
+                QMessageBox.critical(self, "Помилка зміни", f"Помилка при зміні паролю: {e}")
 
         update_password_button.clicked.connect(update_password_button_clicked)
 

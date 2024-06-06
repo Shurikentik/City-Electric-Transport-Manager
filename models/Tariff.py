@@ -43,3 +43,19 @@ class Tariff:
             if result:
                 return Tariff(*result[0])
             return None
+
+    # Функція отримання тарифу та ціни для квитка
+    @staticmethod
+    def get_tariff_id_and_price(transport_type_id, validity_type_id):
+        query = "SELECT tariff_id, ticket_price FROM Tariff WHERE transport_type_id = %s AND validity_type_id = %s"
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            result = db.fetch_data(query, (transport_type_id, validity_type_id))
+            if result:
+                return result[0][0], result[0][1]
+            else:
+                return None, None
+
+    # Функція розрахунку решти
+    @staticmethod
+    def get_rest(price, passed_money):
+        return passed_money - float(price)

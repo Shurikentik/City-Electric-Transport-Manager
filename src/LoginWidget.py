@@ -253,7 +253,7 @@ class LoginWidget(QWidget):
 
             # Якщо користувач не заповнив усі поля, вилізає повідомлення з відповідною помилкою
             if login == "Логін" or password == "Пароль" or not login or not password:
-                QMessageBox.critical(None, "Помилка", "Будь ласка, заповніть усі поля.")
+                QMessageBox.critical(self, "Помилка", "Будь ласка, заповніть усі поля.")
                 return
 
             # Верифікація користувача та визначення його посади
@@ -269,9 +269,9 @@ class LoginWidget(QWidget):
                 elif employee_position == "Касир":
                     main_window.show_cashier_widget(employee=employee)
                 else:
-                    QMessageBox.critical(None, "Помилка", "Невідома посада користувача.")
+                    QMessageBox.critical(self, "Помилка", "Невідома посада користувача.")
             else:
-                QMessageBox.critical(None, "Помилка", "Невірний логін або пароль.")
+                QMessageBox.critical(self, "Помилка", "Невірний логін або пароль.")
 
         # Підключення кнопки до відповідної функції
         sign_in_button.clicked.connect(sign_in_button_clicked)

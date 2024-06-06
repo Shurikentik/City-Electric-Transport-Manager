@@ -51,7 +51,7 @@ class Employee:
     def update_password(self, old_password, new_password):
         # Перевіряється старий введений пароль
         if not Employee.hash_password(old_password) == self.employee_password:
-            raise ValueError("The old password entered does not match the valid password")
+            raise ValueError("Старий пароль введено неправильно")
         # Хешується і встановлюється новий заданий пароль
         hashed_new_password = Employee.hash_password(new_password)
         self.employee_password = hashed_new_password

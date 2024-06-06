@@ -1,5 +1,5 @@
-from tkinter import messagebox
 import psycopg2
+from tkinter import messagebox
 
 
 # Клас для підключення до бази даних
@@ -56,6 +56,18 @@ class Database:
             else:
                 self.cur.execute(query)
             return self.cur.fetchall()
+        except Exception as e:
+            messagebox.showerror("Помилка", str(e))
+            return None
+
+    def execute_query_and_return_one(self, query, params=None):
+        try:
+            if params:
+                self.cur.execute(query, params)
+            else:
+                self.cur.execute(query)
+            self.conn.commit()
+            return self.cur.fetchone()  # Повернення результату запиту
         except Exception as e:
             messagebox.showerror("Помилка", str(e))
             return None

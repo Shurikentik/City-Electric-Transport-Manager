@@ -44,12 +44,12 @@ class CashierWidget(QWidget):
 
         # Додавання картинки касира
         cashier_picture_label = QLabel()
-        cashier_picture_image = QImage("../resources/icons/woman_cashier.png")
+        cashier_picture_image = QImage("../resources/icons/cash_register.png")
 
         # Збільшення зображення
         scaled_image = cashier_picture_image.scaled(
-            int(cashier_picture_image.width() * 0.25),
-            int(cashier_picture_image.height() * 0.25),
+            int(cashier_picture_image.width() * 1.25),
+            int(cashier_picture_image.height() * 1.25),
             Qt.AspectRatioMode.KeepAspectRatio
         )
         cashier_picture_pixmap = QPixmap(scaled_image)
