@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added TicketController.py">
-      <change afterPath="$PROJECT_DIR$/resources/icons/cash_register.png" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon">
+      <change afterPath="$PROJECT_DIR$/data/statistical_queries.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/postgresql_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/postgresql_connection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Benefit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Benefit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Tariff.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Tariff.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Ticket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/controllers/TicketController.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/controllers/TicketController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/icons/woman_cashier.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/icons/woman_cashier.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/ProfileSettingsWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/ProfileSettingsWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/UpdatePasswordWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/UpdatePasswordWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CashierWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CashierWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginWidget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717606853897</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon">
+      <option name="closed" value="true" />
+      <created>1717645945085</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717645945085</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -343,6 +337,7 @@
     <MESSAGE value="added SaleTicketWidget.py" />
     <MESSAGE value="added ComboBoxes to SaleTicketWidget.py" />
     <MESSAGE value="added TicketController.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added TicketController.py" />
+    <MESSAGE value="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon" />
   </component>
 </project>
