@@ -1,13 +1,11 @@
-from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout
+from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QDialog
+from PySide6.QtGui import QPixmap, QFont, QIcon, QImage
+from PySide6.QtCore import Qt
+from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
 
 
 class DispatcherWidget(QWidget):
-    def __init__(self):
+    def __init__(self, main_window, employee):
         super().__init__()
-        self.init_ui()
-
-    def init_ui(self):
-        layout = QVBoxLayout()
-        label = QLabel("Dispatcher Dashboard")
-        layout.addWidget(label)
-        self.setLayout(layout)
+        self.employee = employee
+        self.main_window = main_window

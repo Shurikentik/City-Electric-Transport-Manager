@@ -84,6 +84,10 @@ text_font6 = QFont()
 text_font6.setFamily("Sitka Banner")
 text_font6.setPointSize(35)
 
+text_font7 = QFont()
+text_font7.setFamily("appetite")
+text_font7.setPointSize(70)
+
 # Курсори
 # Створення курсора-стрілочки
 arrow_pixmap = QPixmap("../resources/icons/custom_cursor.png")

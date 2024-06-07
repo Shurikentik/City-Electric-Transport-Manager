@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon">
-      <change afterPath="$PROJECT_DIR$/data/statistical_queries.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added statistical_queries.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/ProfileSettingsWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/ProfileSettingsWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdminWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DriverWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DriverWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,11 +315,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717645945085</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added statistical_queries.py">
+      <option name="closed" value="true" />
+      <created>1717746747618</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1717746747618</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="created a file directory and installed the necessary modules" />
     <MESSAGE value="added connection to database" />
     <MESSAGE value="added MainWindow and LoginWidget" />
     <MESSAGE value="added logic to login and created widget for cashier" />
@@ -338,6 +351,7 @@
     <MESSAGE value="added ComboBoxes to SaleTicketWidget.py" />
     <MESSAGE value="added TicketController.py" />
     <MESSAGE value="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon" />
+    <MESSAGE value="added statistical_queries.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added statistical_queries.py" />
   </component>
 </project>

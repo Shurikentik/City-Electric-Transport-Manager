@@ -224,4 +224,11 @@ class ProfileSettingsWidget(QWidget):
 
     # Обробка події натискання кнопки "Вийти з налаштувань"
     def exit_settings_widget(self):
-        self.main_window.show_cashier_widget(employee=self.employee)
+        if self.employee.employee_position == "Адміністратор":
+            self.main_window.show_admin_widget(employee=self.employee)
+        elif self.employee.employee_position == "Диспетчер":
+            self.main_window.show_dispatcher_widget(employee=self.employee)
+        elif self.employee.employee_position == "Водій":
+            self.main_window.show_driver_widget(employee=self.employee)
+        elif self.employee.employee_position == "Касир":
+            self.main_window.show_cashier_widget(employee=self.employee)

@@ -261,11 +261,11 @@ class LoginWidget(QWidget):
             if employee:
                 employee_position = employee.employee_position
                 if employee_position == "Адміністратор":
-                    main_window.show_admin_widget()
+                    main_window.show_admin_widget(employee=employee)
                 elif employee_position == "Диспетчер":
-                    main_window.show_dispatcher_widget()
+                    main_window.show_dispatcher_widget(employee=employee)
                 elif employee_position == "Водій":
-                    main_window.show_driver_widget()
+                    main_window.show_driver_widget(employee=employee)
                 elif employee_position == "Касир":
                     main_window.show_cashier_widget(employee=employee)
                 else:

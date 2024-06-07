@@ -74,17 +74,17 @@ class MainWindow(QMainWindow):
         from LoginWidget import LoginWidget
         self.setCentralWidget(LoginWidget(self))
 
-    def show_admin_widget(self):
+    def show_admin_widget(self, employee):
         from AdminWidget import AdminWidget
-        self.setCentralWidget(AdminWidget())
+        self.setCentralWidget(AdminWidget(self, employee))
 
-    def show_dispatcher_widget(self):
+    def show_dispatcher_widget(self, employee):
         from DispatcherWidget import DispatcherWidget
-        self.setCentralWidget(DispatcherWidget())
+        self.setCentralWidget(DispatcherWidget(self, employee))
 
-    def show_driver_widget(self):
+    def show_driver_widget(self, employee):
         from DriverWidget import DriverWidget
-        self.setCentralWidget(DriverWidget())
+        self.setCentralWidget(DriverWidget(self, employee))
 
     # Функція переходу до функціонала Касира
     def show_cashier_widget(self, employee):
