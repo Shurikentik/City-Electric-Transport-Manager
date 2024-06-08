@@ -71,6 +71,7 @@ table_style = """
     }
     QTableWidget::item:selected {
         background-color: rgba(255, 255, 255, 0.15);
+        color: white;
     }
     QHeaderView::section {
         background-color: rgb(50, 50, 50);
@@ -84,6 +85,45 @@ table_style = """
         background-color: rgb(50, 50, 50);
         border: 1px solid white;
     }
+"""
+
+message_box_style = """
+        QMessageBox {
+            background-color: qradialgradient(
+                    spread: reflect, cx: 0.231, cy: 0.738364, radius: 0.343, 
+                    fx: 0.267894, fy: 0.625, 
+                    stop: 0.40113 rgba(0, 61, 173, 255), 
+                    stop: 0.983051 rgba(58, 16, 145, 255), 
+                    stop: 1 rgba(140, 255, 225, 255)
+            );
+            min-width: 800px;
+            border: 1px solid white;
+        }
+        QMessageBox QLabel {
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            font-family: "Sitka Banner";
+        }
+        QMessageBox QPushButton {
+            border-color: blue;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 15px;
+            color: white;
+            background-color: qlineargradient(
+                spread:pad, x1:0.3525, y1:0.472, x2:0.971591, y2:0.96, 
+                stop:0 rgba(0, 81, 168, 255), 
+                stop:1 rgba(147, 113, 255, 255)
+            );
+            font-size: 35px;
+            font-weight: bold;
+            font-family: "Sitka Banner";
+            min-width: 100px;
+            height: 40px;
+        }
+        QMessageBox QPushButton:hover { background-color: rgba(255, 255, 255, 30); }
+        QMessageBox QPushButton:pressed { background-color: rgba(255, 255, 255, 100); }
 """
 
 # Шрифти

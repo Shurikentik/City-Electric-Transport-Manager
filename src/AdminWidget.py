@@ -2,13 +2,14 @@ from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLa
 from PySide6.QtGui import QIcon, QImage
 from PySide6.QtCore import Qt
 from styles import *
-from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
+from AdditionalWindows.ConfirmDialog import ConfirmDialog
 from AdditionalWindows.TableDialog import TableDialog
 from models.Ticket import Ticket
 from models.Tariff import Tariff
 from models.ValidityType import ValidityType
 from models.TransportType import TransportType
 from models.Employee import Employee
+from AddEditDialogs.AddEditTransportTypeDialog import AddEditTransportTypeDialog
 
 
 class AdminWidget(QWidget):
@@ -53,8 +54,6 @@ class AdminWidget(QWidget):
         employee_table_button.setFont(text_font2)
         employee_table_button.setFixedWidth(1250)
         employee_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        employee_table_button.clicked.connect(lambda: self.view_table("Користувачі системи", "employee", Employee,
-                                                                      2500))
 
         # Підключення обробників подій для зміни курсора
         employee_table_button.enterEvent = main_window.on_enter_event
@@ -69,7 +68,8 @@ class AdminWidget(QWidget):
         transport_type_button.setFont(text_font2)
         transport_type_button.setFixedWidth(1250)
         transport_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        transport_type_button.clicked.connect(lambda: self.view_table("Типи електротранспорту", "transporttype", TransportType,
+        transport_type_button.clicked.connect(lambda: self.view_table("Типи електротранспорту", "transporttype",
+                                                                      TransportType, AddEditTransportTypeDialog,
                                                                       807, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
@@ -85,8 +85,6 @@ class AdminWidget(QWidget):
         validity_type_button.setFont(text_font2)
         validity_type_button.setFixedWidth(1250)
         validity_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        validity_type_button.clicked.connect(lambda: self.view_table("Терміни чинності", "validitytype", ValidityType,
-                                                                     829, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
         validity_type_button.enterEvent = main_window.on_enter_event
@@ -101,8 +99,6 @@ class AdminWidget(QWidget):
         tariff_table_button.setFont(text_font2)
         tariff_table_button.setFixedWidth(1250)
         tariff_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        tariff_table_button.clicked.connect(lambda: self.view_table("Тарифи", "tariff", Tariff,
-                                                                    1246, table_max_height=498))
 
         # Підключення обробників подій для зміни курсора
         tariff_table_button.enterEvent = main_window.on_enter_event
@@ -117,8 +113,6 @@ class AdminWidget(QWidget):
         ticket_table_button.setFont(text_font2)
         ticket_table_button.setFixedWidth(1250)
         ticket_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        ticket_table_button.clicked.connect(lambda: self.view_table("Квитки", "ticket", Ticket,
-                                                                    1488, is_add_button=False))
 
         # Підключення обробників подій для зміни курсора
         ticket_table_button.enterEvent = main_window.on_enter_event
@@ -254,13 +248,13 @@ class AdminWidget(QWidget):
         self.main_window.show_profile_settings_widget(employee=self.employee)
 
     # Функція перегляду таблиці
-    def view_table(self, title_name, table_name, model_class, table_width, table_max_height=None, is_add_button=True):
-        dialog = TableDialog(title_name, table_name, model_class, table_width,
+    def view_table(self, title_name, table_name, model_class, add_edit_class, table_width, table_max_height=None, is_add_button=True):
+        dialog = TableDialog(title_name, table_name, model_class, add_edit_class, table_width,
                              table_max_height=table_max_height, is_add_button=is_add_button)
         dialog.exec()
 
     # Обробка події при натисканні кнопки "Вийти із облікового запису"
     def exit_profile(self):
-        dialog = ConfirmExitDialog()
+        dialog = ConfirmDialog("Ви впевнені, що хочете вийти?")
         if dialog.exec() == QDialog.Accepted:
             self.main_window.show_login_widget()

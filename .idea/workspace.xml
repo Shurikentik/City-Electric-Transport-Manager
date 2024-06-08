@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="customized TableDialog.py">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added opening employee table">
+      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportTypeDialog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/TransportType.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/TransportType.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/ConfirmExitDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/ConfirmDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/TableDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/TableDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdminWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CashierWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CashierWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DriverWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DriverWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,11 +350,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717838380265</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="added opening employee table">
+      <option name="closed" value="true" />
+      <created>1717847742867</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717847742867</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added database configurations" />
     <MESSAGE value="added ValidityType class" />
     <MESSAGE value="added TransportType class" />
     <MESSAGE value="added Tariff class" />
@@ -371,6 +386,7 @@
     <MESSAGE value="added layout to AdminWidget.py" />
     <MESSAGE value="added TableDialog.py" />
     <MESSAGE value="customized TableDialog.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="customized TableDialog.py" />
+    <MESSAGE value="added opening employee table" />
+    <option name="LAST_COMMIT_MESSAGE" value="added opening employee table" />
   </component>
 </project>

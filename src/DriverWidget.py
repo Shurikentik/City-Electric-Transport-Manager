@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QDialog
 from PySide6.QtGui import QPixmap, QFont, QIcon, QImage
 from PySide6.QtCore import Qt
-from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
+from AdditionalWindows.ConfirmDialog import ConfirmExitDialog
 
 
 class DriverWidget(QWidget):

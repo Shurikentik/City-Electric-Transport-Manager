@@ -11,7 +11,7 @@ class TransportType:
     def save(self):
         query = "INSERT INTO TransportType (transport_name) VALUES (%s) RETURNING transport_type_id"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.transport_type_id = db.execute_query(query, (self.transport_name,))[0][0]
+            self.transport_type_id = db.execute_query_and_return_one(query, (self.transport_name,))[0]
 
     def update(self):
         if not self.transport_type_id:

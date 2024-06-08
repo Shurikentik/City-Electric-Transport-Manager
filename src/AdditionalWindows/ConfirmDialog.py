@@ -3,8 +3,8 @@ from PySide6.QtGui import QFont, QPixmap, QCursor
 from PySide6.QtCore import Qt
 
 
-class ConfirmExitDialog(QDialog):
-    def __init__(self, parent=None):
+class ConfirmDialog(QDialog):
+    def __init__(self, question, parent=None):
         super().__init__(parent)
         # Приховання назви вікна (верхньої панелі)
         self.setWindowFlag(Qt.FramelessWindowHint)
@@ -63,7 +63,7 @@ class ConfirmExitDialog(QDialog):
         self.setCursor(self.arrow_cursor)
 
         # Додати текстове повідомлення
-        message_label = QLabel("Ви впевнені, що хочете вийти?")
+        message_label = QLabel(question)
         message_label.setStyleSheet(text_style)
         message_label.setFont(text_font2)
 

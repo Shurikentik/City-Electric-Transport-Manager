@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QDialog
 from PySide6.QtGui import QPixmap, QFont, QIcon, QImage
 from PySide6.QtCore import Qt
-from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
+from AdditionalWindows.ConfirmDialog import ConfirmDialog
 
 
 class CashierWidget(QWidget):
@@ -160,6 +160,6 @@ class CashierWidget(QWidget):
 
     # Обробка події при натисканні кнопки "Вийти із облікового запису"
     def exit_profile(self):
-        dialog = ConfirmExitDialog()
+        dialog = ConfirmDialog("Ви впевнені, що хочете вийти?")
         if dialog.exec() == QDialog.Accepted:
             self.main_window.show_login_widget()
