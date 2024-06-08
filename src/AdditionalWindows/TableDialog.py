@@ -156,6 +156,12 @@ class TableDialog(QDialog):
         # Встановлення висоти рядків
         self.table_widget.resizeRowsToContents()
 
+        # Приховати колонку employee_password, якщо така є
+        header_labels = list(items[0].__dict__.keys())
+        if "employee_password" in header_labels:
+            col_index = header_labels.index("employee_password")
+            self.table_widget.hideColumn(col_index)
+
         # Розташування таблиці по центру
         table_layout = QHBoxLayout()
         table_layout.addWidget(self.table_widget)

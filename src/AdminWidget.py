@@ -8,6 +8,7 @@ from models.Ticket import Ticket
 from models.Tariff import Tariff
 from models.ValidityType import ValidityType
 from models.TransportType import TransportType
+from models.Employee import Employee
 
 
 class AdminWidget(QWidget):
@@ -52,6 +53,8 @@ class AdminWidget(QWidget):
         employee_table_button.setFont(text_font2)
         employee_table_button.setFixedWidth(1250)
         employee_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        employee_table_button.clicked.connect(lambda: self.view_table("Користувачі системи", "employee", Employee,
+                                                                      2500))
 
         # Підключення обробників подій для зміни курсора
         employee_table_button.enterEvent = main_window.on_enter_event
