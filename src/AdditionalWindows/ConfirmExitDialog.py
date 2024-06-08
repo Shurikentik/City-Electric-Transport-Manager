@@ -17,6 +17,7 @@ class ConfirmExitDialog(QDialog):
                     stop: 0.983051 rgba(58, 16, 145, 255), 
                     stop: 1 rgba(140, 255, 225, 255)
                     );
+                    border: 1px solid white;
         """)
 
         # Встановлення розмірів вікна

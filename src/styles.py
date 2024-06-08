@@ -11,7 +11,7 @@ window_background_style = """
                 );
             }
         """
-text_style = "background-color:none; color:white;"
+text_style = "background-color:none; color:white; border:none;"
 button_style = """
                     QPushButton {
                     border-color: blue;
@@ -58,6 +58,34 @@ combo_box_style = """
     }
 """
 
+table_style = """
+    QTableWidget {
+        border-width: 1px;
+        border-style: solid;
+        border-color: white;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+    QTableWidget::item {
+        border: 1px solid white;
+    }
+    QTableWidget::item:selected {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    QHeaderView::section {
+        background-color: rgb(50, 50, 50);
+        color: white;
+        border: 1px solid white;
+    }
+    QHeaderView::section:hover {
+        background-color: rgb(90, 90, 90);
+    }
+    QTableCornerButton::section {
+        background-color: rgb(50, 50, 50);
+        border: 1px solid white;
+    }
+"""
+
 # Шрифти
 text_font1 = QFont()
 text_font1.setFamily("appetite")
@@ -87,6 +115,10 @@ text_font6.setPointSize(35)
 text_font7 = QFont()
 text_font7.setFamily("appetite")
 text_font7.setPointSize(70)
+
+text_font8 = QFont()
+text_font8.setFamily("appetite")
+text_font8.setPointSize(45)
 
 # Курсори
 # Створення курсора-стрілочки

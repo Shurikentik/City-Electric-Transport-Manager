@@ -1,12 +1,13 @@
-from PySide6.QtWidgets import QPushButton, QVBoxLayout, QWidget, QDialog, QLabel, QHBoxLayout, QTableView
-from PySide6.QtGui import QIcon, QStandardItem, QStandardItemModel
+from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QDialog, QLabel, QHBoxLayout, QTableWidget,
+                               QTableWidgetItem, QAbstractItemView)
+from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
 from src.styles import *
 
 
 # Вікно для показування таблиць бази даних
 class TableDialog(QDialog):
-    def __init__(self, title_name, table_name, model_class, parent=None):
+    def __init__(self, title_name, table_name, model_class, table_width, parent=None, table_max_height=None, is_add_button=True):
         super().__init__(parent)
         # Приховання назви вікна (верхньої панелі)
         self.setWindowFlag(Qt.FramelessWindowHint)
@@ -14,6 +15,9 @@ class TableDialog(QDialog):
         self.title_name = title_name
         self.table_name = table_name
         self.model_class = model_class
+        self.table_width = table_width
+        self.table_max_height = table_max_height
+        self.is_add_button = is_add_button
 
         # Встановлення градієнтного фону через стилі
         self.setStyleSheet("""
@@ -25,6 +29,7 @@ class TableDialog(QDialog):
                             stop: 0.983051 rgba(58, 16, 145, 255), 
                             stop: 1 rgba(140, 255, 225, 255)
                         );
+                        border: 1px solid white;
                     }
                 """)
 
@@ -62,6 +67,12 @@ class TableDialog(QDialog):
         add_button.enterEvent = self.on_enter_event
         add_button.leaveEvent = self.on_leave_event
 
+        add_button_layout = QHBoxLayout()
+        add_button_layout.addWidget(add_button)
+        add_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        add_button_widget = QWidget()
+        add_button_widget.setLayout(add_button_layout)
+
         # Кнопка "Змінити"
         edit_button = QPushButton()
         edit_button.setIcon(QIcon('../resources/icons/edit_icon.svg'))
@@ -75,6 +86,12 @@ class TableDialog(QDialog):
         # Підключення обробників подій для зміни курсора
         edit_button.enterEvent = self.on_enter_event
         edit_button.leaveEvent = self.on_leave_event
+
+        edit_button_layout = QHBoxLayout()
+        edit_button_layout.addWidget(edit_button)
+        edit_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        edit_button_widget = QWidget()
+        edit_button_widget.setLayout(edit_button_layout)
 
         # Кнопка "Видалити"
         delete_button = QPushButton()
@@ -90,47 +107,61 @@ class TableDialog(QDialog):
         delete_button.enterEvent = self.on_enter_event
         delete_button.leaveEvent = self.on_leave_event
 
-        button_layout.addWidget(add_button)
-        button_layout.addWidget(edit_button)
-        button_layout.addWidget(delete_button)
-        button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        delete_button_layout = QHBoxLayout()
+        delete_button_layout.addWidget(delete_button)
+        delete_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        delete_button_widget = QWidget()
+        delete_button_widget.setLayout(delete_button_layout)
+
+        if self.is_add_button:
+            button_layout.addWidget(add_button_widget)
+        button_layout.addWidget(edit_button_widget)
+        button_layout.addWidget(delete_button_widget)
 
         layout.addLayout(button_layout)
 
-        # Додавання QTableView
-        self.table_view = QTableView()
+        # Додавання QTableWidget
+        self.table_widget = QTableWidget()
 
         items = self.model_class.get_all()
         if items:
             column_count = len(items[0].__dict__)
-            self.model = QStandardItemModel(len(items), column_count)
-            self.model.setHorizontalHeaderLabels(list(items[0].__dict__.keys()))
+            self.table_widget.setRowCount(len(items))
+            self.table_widget.setColumnCount(column_count)
+            self.table_widget.setHorizontalHeaderLabels(list(items[0].__dict__.keys()))
 
             for row, item in enumerate(items):
                 for col, (key, value) in enumerate(item.__dict__.items()):
-                    self.model.setItem(row, col, QStandardItem(str(value)))
+                    table_item = QTableWidgetItem(str(value))
+                    table_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)  # Центрування тексту в ячейках
+                    self.table_widget.setItem(row, col, table_item)
 
-            self.table_view.setModel(self.model)
+        self.table_widget.setStyleSheet(table_style)
+        self.table_widget.setFont(text_font8)
+        self.table_widget.horizontalHeader().setFont(text_font6)
+        self.table_widget.verticalHeader().setFont(text_font6)
+        self.table_widget.setFixedWidth(self.table_width)
+        self.table_widget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        if self.table_max_height:
+            self.table_widget.setFixedHeight(self.table_max_height)
+        else:
+            self.table_widget.setFixedHeight(580)
 
-        self.table_view.setStyleSheet("""
-                    QTableView {
-                        border-radius: 7px;
-                        border-width: 1px;
-                        border-style: solid;
-                        border-color: white;
-                        color: white;
-                        background-color: rgba(255, 255, 255, 0.25);
-                    }
-                    QTableView::item:selected {
-                        background-color: rgba(255, 255, 255, 0.4);
-                    }
-                """)
-        self.table_view.setFont(text_font6)
-        for row in range(self.table_view.model().rowCount()):
-            self.table_view.setRowHeight(row, 70)
-        for column in range(self.table_view.model().columnCount()):
-            self.table_view.setColumnWidth(column, 300)
-        layout.addWidget(self.table_view)
+        # Зміна ширини колонок відповідно до вмісту
+        self.table_widget.resizeColumnsToContents()
+        # Збільшення ширини кожної колонки на 70 пунктів
+        for col in range(self.table_widget.columnCount()):
+            self.table_widget.setColumnWidth(col, self.table_widget.columnWidth(col) + 30)
+
+        # Встановлення висоти рядків
+        self.table_widget.resizeRowsToContents()
+
+        # Розташування таблиці по центру
+        table_layout = QHBoxLayout()
+        table_layout.addWidget(self.table_widget)
+        table_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        layout.addLayout(table_layout)
 
         # Кнопка "Вихід"
         exit_button = QPushButton()
