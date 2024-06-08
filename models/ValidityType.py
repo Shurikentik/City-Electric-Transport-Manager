@@ -11,7 +11,7 @@ class ValidityType:
     def save(self):
         query = "INSERT INTO ValidityType (validity_name) VALUES (%s) RETURNING validity_type_id"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.validity_type_id = db.execute_query(query, (self.validity_name,))[0][0]
+            self.validity_type_id = db.execute_query_and_return_one(query, (self.validity_name,))[0]
 
     def update(self):
         if not self.validity_type_id:

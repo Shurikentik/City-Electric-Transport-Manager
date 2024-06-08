@@ -10,6 +10,7 @@ from models.ValidityType import ValidityType
 from models.TransportType import TransportType
 from models.Employee import Employee
 from AddEditDialogs.AddEditTransportTypeDialog import AddEditTransportTypeDialog
+from AddEditDialogs.AddEditValidityTypeDialog import AddEditValidityTypeDialog
 
 
 class AdminWidget(QWidget):
@@ -85,6 +86,9 @@ class AdminWidget(QWidget):
         validity_type_button.setFont(text_font2)
         validity_type_button.setFixedWidth(1250)
         validity_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        validity_type_button.clicked.connect(lambda: self.view_table("Терміни чинності", "validitytype",
+                                                                     ValidityType, AddEditValidityTypeDialog,
+                                                                     829, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
         validity_type_button.enterEvent = main_window.on_enter_event
@@ -248,7 +252,8 @@ class AdminWidget(QWidget):
         self.main_window.show_profile_settings_widget(employee=self.employee)
 
     # Функція перегляду таблиці
-    def view_table(self, title_name, table_name, model_class, add_edit_class, table_width, table_max_height=None, is_add_button=True):
+    def view_table(self, title_name, table_name, model_class, add_edit_class, table_width,
+                   table_max_height=None, is_add_button=True):
         dialog = TableDialog(title_name, table_name, model_class, add_edit_class, table_width,
                              table_max_height=table_max_height, is_add_button=is_add_button)
         dialog.exec()
