@@ -51,7 +51,7 @@ class Tariff:
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
             result = db.fetch_data(query, (transport_type_id, validity_type_id))
             if result:
-                return result[0][0], result[0][1]
+                return result[0][0], float(result[0][1])
             else:
                 return None, None
 

@@ -12,7 +12,7 @@ class Benefit:
     def save(self):
         query = "INSERT INTO Benefit (benefit_name, discount_modifier) VALUES (%s, %s) RETURNING benefit_id"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.benefit_id = db.execute_query(query, (self.benefit_name, self.discount_modifier))[0][0]
+            self.benefit_id = db.execute_query_and_return_one(query, (self.benefit_name, self.discount_modifier))[0]
 
     def update(self):
         if not self.benefit_id:
@@ -39,7 +39,7 @@ class Benefit:
         return Benefit(
             benefit_id=row[0],
             benefit_name=row[1],
-            discount_modifier=row[2]
+            discount_modifier=float(row[2])
         )
 
     @staticmethod
@@ -48,7 +48,7 @@ class Benefit:
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
             result = db.fetch_data(query, (benefit_id,))
             if result:
-                return Benefit(*result[0])
+                return Benefit.from_db_row(result[0])
             return None
 
     # Функція застосування пільгової знижки до квитка

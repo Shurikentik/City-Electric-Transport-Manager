@@ -4,8 +4,8 @@ from PySide6.QtCore import Qt
 from src.styles import *
 
 
-# Вікно додавання/зміни типу терміну чинності
-class AddEditValidityTypeDialog(QDialog):
+# Вікно додавання/зміни пільги
+class AddEditBenefitDialog(QDialog):
     def __init__(self, model_class, table_dialog, instance=None, parent=None):
         super().__init__(parent)
         self.model_class = model_class
@@ -41,30 +41,30 @@ class AddEditValidityTypeDialog(QDialog):
         layout = QVBoxLayout()
 
         # Додавання назви вікна
-        title_label = QLabel(f"{"Змінити" if self.instance else "Додати новий"} тип терміну чинності")
+        title_label = QLabel(f"{"Змінити" if self.instance else "Додати нову"} пільгу")
         title_label.setStyleSheet(text_style)
         title_label.setFont(text_font7)
         title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title_label)
 
-        # Надпис "Введіть назву типу транспорту"
-        input_type_label = QLabel("Введіть назву типу терміну чинності")
+        # Надпис "Введіть назву пільги"
+        input_type_label = QLabel("Введіть назву пільги")
         input_type_label.setStyleSheet(text_style)
         input_type_label.setFont(text_font5)
         input_type_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
         layout.addWidget(input_type_label)
 
-        # Рядок "Назва типу"
-        # Іконка терміну чинності
-        time_icon_pixmap = QPixmap("../resources/icons/time_icon.svg").scaled(100, 100)
-        time_icon_label = QLabel()
-        time_icon_label.setPixmap(time_icon_pixmap)
+        # Рядок "Назва пільги"
+        # Іконка пільги
+        pay_icon_pixmap = QPixmap("../resources/icons/pay_icon.svg").scaled(100, 100)
+        pay_icon_label = QLabel()
+        pay_icon_label.setPixmap(pay_icon_pixmap)
 
-        # Текстове поле для типу терміну чинності
+        # Текстове поле для назви пільги
         type_line_edit = QLineEdit()
         if self.instance:
-            type_line_edit.setText(self.instance.validity_name)
-        type_line_edit.setPlaceholderText("Тип терміну чинності")
+            type_line_edit.setText(self.instance.benefit_name)
+        type_line_edit.setPlaceholderText("Назва пільги")
         type_line_edit.setStyleSheet(text_line_style)
         type_line_edit.setFont(text_font4)
 
@@ -73,13 +73,47 @@ class AddEditValidityTypeDialog(QDialog):
         type_line_edit.enterEvent = self.on_line_edit_enter
         type_line_edit.leaveEvent = self.on_line_edit_leave
 
-        # Об'єднання рядку з типом транспорту
-        type_layout = QHBoxLayout()
-        type_layout.addWidget(time_icon_label)
-        type_layout.addWidget(type_line_edit)
-        type_layout.setSpacing(20)
-        type_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        layout.addLayout(type_layout)
+        # Об'єднання рядку з назвою пільги
+        benefit_layout = QHBoxLayout()
+        benefit_layout.addWidget(pay_icon_label)
+        benefit_layout.addWidget(type_line_edit)
+        benefit_layout.setSpacing(20)
+        benefit_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        layout.addLayout(benefit_layout)
+
+        # Надпис "Введіть модифікатор знижки"
+        input_discount_label = QLabel("Введіть модифікатор знижки")
+        input_discount_label.setStyleSheet(text_style)
+        input_discount_label.setFont(text_font5)
+        input_discount_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        layout.addWidget(input_discount_label)
+
+        # Рядок "Модифікатор знижки"
+        # Іконка проценту
+        percent_icon_pixmap = QPixmap("../resources/icons/percent_icon.svg").scaled(100, 100)
+        percent_icon_label = QLabel()
+        percent_icon_label.setPixmap(percent_icon_pixmap)
+
+        # Текстове поле для модифікатору знижки
+        discount_line_edit = QLineEdit()
+        if self.instance:
+            discount_line_edit.setText(str(self.instance.discount_modifier))
+        discount_line_edit.setPlaceholderText("Модифікатор знижки")
+        discount_line_edit.setStyleSheet(text_line_style)
+        discount_line_edit.setFont(text_font4)
+
+        # Підключення обробників подій для зміни курсора
+        discount_line_edit.setCursor(self.text_cursor)
+        discount_line_edit.enterEvent = self.on_line_edit_enter
+        discount_line_edit.leaveEvent = self.on_line_edit_leave
+
+        # Об'єднання рядку з модифікатором знижки
+        discount_layout = QHBoxLayout()
+        discount_layout.addWidget(percent_icon_label)
+        discount_layout.addWidget(discount_line_edit)
+        discount_layout.setSpacing(20)
+        discount_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        layout.addLayout(discount_layout)
 
         # Додавання кнопок
         button_layout = QHBoxLayout()
@@ -106,11 +140,27 @@ class AddEditValidityTypeDialog(QDialog):
         add_edit_button_widget.setLayout(add_edit_button_layout)
 
         # Обробка події натискання кнопки "Додати/Змінити"
-        def save_validity_type():
-            validity_name = type_line_edit.text().strip()
-            # Перевірка на заповненість
-            if not validity_name or validity_name == "Тип терміну чинності":
-                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Ви не вказали назву типу терміну чинності")
+        def save_benefit():
+            benefit_name = type_line_edit.text().strip()
+            # Перевірка на заповненість поля з назвою пільги
+            if not benefit_name or benefit_name == "Назва пільги":
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Ви не вказали назву пільги")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                return
+            # Перевірка формату вказання знижки
+            try:
+                discount_modifier = float(discount_line_edit.text().strip())
+            except ValueError:
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
+                                      "Модифікатор знижки вказано у неправильному форматі")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                return
+            # Перевірка, чи знижка знаходиться у межах від 0 до 1
+            if not (discount_modifier > 0 and discount_modifier <= 1):
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
+                                      "Модифікатор знижки має бути у межах від 0.00 до 1.00")
                 msg_box.setStyleSheet(message_box_style)
                 msg_box.exec()
                 return
@@ -118,17 +168,17 @@ class AddEditValidityTypeDialog(QDialog):
             # Додавання нового об'єкта
             if not self.instance:
                 # Перевірка унікальності назви
-                existing_types = [validity.validity_name for validity in self.model_class.get_all()]
-                if validity_name in existing_types:
+                existing_benefits = [benefit.benefit_name for benefit in self.model_class.get_all()]
+                if benefit_name in existing_benefits:
                     msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
-                                          "Тип терміну чинності з такою назвою вже існує")
+                                          "Пільга з такою назвою вже існує")
                     msg_box.setStyleSheet(message_box_style)
                     msg_box.exec()
                     return
                 try:
-                    new_validity_type = self.model_class(validity_name=validity_name)
-                    new_validity_type.save()
-                    msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Тип терміну чинності успішно додано")
+                    new_benefit = self.model_class(benefit_name=benefit_name, discount_modifier=discount_modifier)
+                    new_benefit.save()
+                    msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Пільгу успішно додано")
                     msg_box.setStyleSheet(message_box_style)
                     msg_box.exec()
                     self.close()
@@ -139,25 +189,26 @@ class AddEditValidityTypeDialog(QDialog):
 
             # Зміна існуючого об'єкта
             else:
-                if validity_name == self.instance.validity_name:
+                if benefit_name == self.instance.benefit_name and discount_modifier == self.instance.discount_modifier:
                     msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
-                                          "Ви нічого не змінили у назві терміну чинності")
+                                          "Ви не внесли жодних змін")
                     msg_box.setStyleSheet(message_box_style)
                     msg_box.exec()
                     return
                 # Перевірка унікальності назви
-                existing_types = [validity.validity_name for validity in self.model_class.get_all() if
-                                  validity.validity_type_id != self.instance.validity_type_id]
-                if validity_name in existing_types:
+                existing_benefits = [benefit.benefit_name for benefit in self.model_class.get_all() if
+                                     benefit.benefit_id != self.instance.benefit_id]
+                if benefit_name in existing_benefits:
                     msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
-                                          "Тип терміну чинності з такою назвою вже існує")
+                                          "Пільга з такою назвою вже існує")
                     msg_box.setStyleSheet(message_box_style)
                     msg_box.exec()
                     return
                 try:
-                    self.instance.validity_name = validity_name
+                    self.instance.benefit_name = benefit_name
+                    self.instance.discount_modifier = discount_modifier
                     self.instance.update()
-                    msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Тип терміну чинності успішно змінено")
+                    msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Пільгу успішно змінено")
                     msg_box.setStyleSheet(message_box_style)
                     msg_box.exec()
                     self.close()
@@ -167,7 +218,7 @@ class AddEditValidityTypeDialog(QDialog):
                     msg_box.exec()
 
         # Підключення кнопки до команди
-        add_edit_button.clicked.connect(save_validity_type)
+        add_edit_button.clicked.connect(save_benefit)
 
         # Кнопка "Відмінити"
         exit_button = QPushButton()

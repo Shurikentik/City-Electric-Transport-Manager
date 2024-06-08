@@ -64,8 +64,7 @@ class AddEditTransportTypeDialog(QDialog):
         type_line_edit = QLineEdit()
         if self.instance:
             type_line_edit.setText(self.instance.transport_name)
-        else:
-            type_line_edit.setPlaceholderText("Тип електротранспорту")
+        type_line_edit.setPlaceholderText("Тип електротранспорту")
         type_line_edit.setStyleSheet(text_line_style)
         type_line_edit.setFont(text_font4)
 
@@ -109,14 +108,15 @@ class AddEditTransportTypeDialog(QDialog):
         # Обробка події натискання кнопки "Додати/Змінити"
         def save_transport_type():
             transport_name = type_line_edit.text().strip()
+            # Перевірка на заповненість
+            if not transport_name or transport_name == "Тип електротранспорту":
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Ви не вказали назву типу транспорту")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                return
 
+            # Додавання нового об'єкта
             if not self.instance:
-                # Додавання нового об'єкта
-                if not transport_name or transport_name == "Тип електротранспорту":
-                    msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Ви не вказали назву типу транспорту")
-                    msg_box.setStyleSheet(message_box_style)
-                    msg_box.exec()
-                    return
                 # Перевірка унікальності назви
                 existing_types = [transport.transport_name for transport in self.model_class.get_all()]
                 if transport_name in existing_types:
@@ -136,8 +136,9 @@ class AddEditTransportTypeDialog(QDialog):
                     msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", str(e))
                     msg_box.setStyleSheet(message_box_style)
                     msg_box.exec()
+
+            # Зміна існуючого об'єкта
             else:
-                # Зміна існуючого об'єкта
                 if transport_name == self.instance.transport_name:
                     msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
                                           "Ви нічого не змінили у назві транспорту")

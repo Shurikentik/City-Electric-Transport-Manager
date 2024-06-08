@@ -16,7 +16,7 @@ class Ticket:
     def from_db_row(row):
         return Ticket(
             ticket_id=row[0],
-            price=row[1],
+            price=float(row[1]),
             sale_date=row[2],
             tariff_id=row[3],
             benefit_id=row[4],

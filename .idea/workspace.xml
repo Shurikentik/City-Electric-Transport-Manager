@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEditTransportTypeDialog.py">
-      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditValidityTypeDialog.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEditValidityTypeDialog.py">
+      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditBenefitDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ValidityType.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ValidityType.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Benefit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Benefit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Tariff.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Tariff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Ticket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportTypeDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportTypeDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddEditDialogs/AddEditValidityTypeDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditValidityTypeDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdminWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -359,11 +363,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717861272948</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="added AddEditValidityTypeDialog.py">
+      <option name="closed" value="true" />
+      <created>1717862997628</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1717862997628</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added TransportType class" />
     <MESSAGE value="added Tariff class" />
     <MESSAGE value="added Benefit class" />
     <MESSAGE value="added Employee class (transferred hash_password, add_employee, verify_login_password from postgresql_connection.py to this class)" />
@@ -388,6 +399,7 @@
     <MESSAGE value="customized TableDialog.py" />
     <MESSAGE value="added opening employee table" />
     <MESSAGE value="added AddEditTransportTypeDialog.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added AddEditTransportTypeDialog.py" />
+    <MESSAGE value="added AddEditValidityTypeDialog.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added AddEditValidityTypeDialog.py" />
   </component>
 </project>

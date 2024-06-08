@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt
 from styles import *
 from AdditionalWindows.ConfirmDialog import ConfirmDialog
 from AdditionalWindows.TableDialog import TableDialog
+from models.Benefit import Benefit
 from models.Ticket import Ticket
 from models.Tariff import Tariff
 from models.ValidityType import ValidityType
@@ -11,6 +12,7 @@ from models.TransportType import TransportType
 from models.Employee import Employee
 from AddEditDialogs.AddEditTransportTypeDialog import AddEditTransportTypeDialog
 from AddEditDialogs.AddEditValidityTypeDialog import AddEditValidityTypeDialog
+from AddEditDialogs.AddEditBenefitDialog import AddEditBenefitDialog
 
 
 class AdminWidget(QWidget):
@@ -71,7 +73,7 @@ class AdminWidget(QWidget):
         transport_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         transport_type_button.clicked.connect(lambda: self.view_table("Типи електротранспорту", "transporttype",
                                                                       TransportType, AddEditTransportTypeDialog,
-                                                                      807, table_max_height=322))
+                                                                      820, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
         transport_type_button.enterEvent = main_window.on_enter_event
@@ -88,7 +90,7 @@ class AdminWidget(QWidget):
         validity_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         validity_type_button.clicked.connect(lambda: self.view_table("Терміни чинності", "validitytype",
                                                                      ValidityType, AddEditValidityTypeDialog,
-                                                                     829, table_max_height=322))
+                                                                     885, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
         validity_type_button.enterEvent = main_window.on_enter_event
@@ -107,6 +109,23 @@ class AdminWidget(QWidget):
         # Підключення обробників подій для зміни курсора
         tariff_table_button.enterEvent = main_window.on_enter_event
         tariff_table_button.leaveEvent = main_window.on_leave_event
+
+        # Кнопка "Пільги"
+        benefit_table_button = QPushButton()
+        benefit_table_button.setIcon(QIcon('../resources/icons/percent_icon.svg'))
+        benefit_table_button.setText("Пільги")
+        benefit_table_button.setIconSize(benefit_table_button.sizeHint() * 3)
+        benefit_table_button.setStyleSheet(button_style)
+        benefit_table_button.setFont(text_font2)
+        benefit_table_button.setFixedWidth(1250)
+        benefit_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        benefit_table_button.clicked.connect(lambda: self.view_table("Пільги", "benefit",
+                                                                     Benefit, AddEditBenefitDialog,
+                                                                     1150, 322))
+
+        # Підключення обробників подій для зміни курсора
+        benefit_table_button.enterEvent = main_window.on_enter_event
+        benefit_table_button.leaveEvent = main_window.on_leave_event
 
         # Кнопка "Продані квитки"
         ticket_table_button = QPushButton()
@@ -146,6 +165,7 @@ class AdminWidget(QWidget):
         menu_layout.addWidget(transport_type_button)
         menu_layout.addWidget(validity_type_button)
         menu_layout.addWidget(tariff_table_button)
+        menu_layout.addWidget(benefit_table_button)
         menu_layout.addWidget(ticket_table_button)
         menu_layout.addWidget(exit_profile_button)
         menu_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
