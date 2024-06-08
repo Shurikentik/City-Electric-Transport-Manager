@@ -3,6 +3,8 @@ from PySide6.QtGui import QPixmap, QFont, QIcon, QImage
 from PySide6.QtCore import Qt
 from styles import *
 from AdditionalWindows.ConfirmExitDialog import ConfirmExitDialog
+from AdditionalWindows.TableDialog import TableDialog
+from models.Ticket import Ticket
 
 
 class AdminWidget(QWidget):
@@ -103,6 +105,9 @@ class AdminWidget(QWidget):
         ticket_table_button.setFont(text_font2)
         ticket_table_button.setFixedWidth(1250)
         ticket_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+
+        # Додавання команди до кнопки
+        ticket_table_button.clicked.connect(lambda: self.view_table("Квитки", "ticket", Ticket))
 
         # Підключення обробників подій для зміни курсора
         ticket_table_button.enterEvent = main_window.on_enter_event
@@ -207,11 +212,19 @@ class AdminWidget(QWidget):
         tickets_by_cashier_button.enterEvent = main_window.on_enter_event
         tickets_by_cashier_button.leaveEvent = main_window.on_leave_event
 
+        # Додавання картинки адміна
+        admin_picture_label = QLabel()
+        admin_image = QImage("../resources/icons/admin_picture.png")
+        admin_picture_pixmap = QPixmap(admin_image)
+        admin_picture_label.setPixmap(admin_picture_pixmap)
+        admin_picture_label.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignTop)
+
         # Додавання усіх елементів до розмітки статистики
         statistics_layout.addWidget(stat_widget)
         statistics_layout.addWidget(months_tickets_button)
         statistics_layout.addWidget(all_tickets_button)
         statistics_layout.addWidget(tickets_by_cashier_button)
+        statistics_layout.addWidget(admin_picture_label)
         statistics_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         statistics_layout.setSpacing(30)
 
@@ -228,6 +241,11 @@ class AdminWidget(QWidget):
     # Обробка події при натисканні кнопки "Налаштування профілю"
     def open_profile_settings(self):
         self.main_window.show_profile_settings_widget(employee=self.employee)
+
+    # Функція перегляду таблиці
+    def view_table(self, title_name, table_name, model_class):
+        dialog = TableDialog(title_name, table_name, model_class)
+        dialog.exec()
 
     # Обробка події при натисканні кнопки "Вийти із облікового запису"
     def exit_profile(self):

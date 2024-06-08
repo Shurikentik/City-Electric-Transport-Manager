@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QPushButton, QVBoxLayout, QWidget, QDialog, QLabel, QHBoxLayout
-from PySide6.QtGui import QIcon, QFont, QPixmap, QCursor
+from PySide6.QtWidgets import QPushButton, QVBoxLayout, QDialog, QLabel, QHBoxLayout
+from PySide6.QtGui import QFont, QPixmap, QCursor
 from PySide6.QtCore import Qt
 
 
