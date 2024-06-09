@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QDialog
+from PySide6.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QDialog, QMessageBox
 from PySide6.QtGui import QIcon, QImage
 from PySide6.QtCore import Qt
 from styles import *
@@ -13,6 +13,7 @@ from models.Employee import Employee
 from AddEditDialogs.AddEditTransportTypeDialog import AddEditTransportTypeDialog
 from AddEditDialogs.AddEditValidityTypeDialog import AddEditValidityTypeDialog
 from AddEditDialogs.AddEditBenefitDialog import AddEditBenefitDialog
+from data.statistical_queries import *
 
 
 class AdminWidget(QWidget):
@@ -214,18 +215,29 @@ class AdminWidget(QWidget):
         months_tickets_button.leaveEvent = main_window.on_leave_event
 
         # Кнопка "Загальна кількість проданих квитків"
-        all_tickets_button = QPushButton()
-        all_tickets_button.setIcon(QIcon('../resources/icons/ticket_icon.svg'))
-        all_tickets_button.setText("Загальна кількість квитків")
-        all_tickets_button.setIconSize(all_tickets_button.sizeHint() * 3)
-        all_tickets_button.setStyleSheet(button_style)
-        all_tickets_button.setFont(text_font2)
-        all_tickets_button.setFixedWidth(1250)
-        all_tickets_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        month_revenue_button = QPushButton()
+        month_revenue_button.setIcon(QIcon('../resources/icons/money_bag_icon.svg'))
+        month_revenue_button.setText("Дохід компанії за місяць")
+        month_revenue_button.setIconSize(month_revenue_button.sizeHint() * 3)
+        month_revenue_button.setStyleSheet(button_style)
+        month_revenue_button.setFont(text_font2)
+        month_revenue_button.setFixedWidth(1250)
+        month_revenue_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+
+        # Обробка події натискання кнопки "Дохід компанії за місяць"
+        def show_month_revenue():
+            month_revenue = get_total_income_last_30_days()
+            msg_box = QMessageBox(QMessageBox.Icon.Information, "Дохід компанії за останній місяць",
+                                  f"Дохід компанії за останні 30 днів від продажу квитків склав {month_revenue} грн")
+            msg_box.setStyleSheet(message_box_style)
+            msg_box.exec()
+
+        # Підключення команди до кнопки
+        month_revenue_button.clicked.connect(show_month_revenue)
 
         # Підключення обробників подій для зміни курсора
-        all_tickets_button.enterEvent = main_window.on_enter_event
-        all_tickets_button.leaveEvent = main_window.on_leave_event
+        month_revenue_button.enterEvent = main_window.on_enter_event
+        month_revenue_button.leaveEvent = main_window.on_leave_event
 
         # Кнопка "Кількість квитків, проданих кожним касиром"
         tickets_by_cashier_button = QPushButton()
@@ -251,7 +263,7 @@ class AdminWidget(QWidget):
         # Додавання усіх елементів до розмітки статистики
         statistics_layout.addWidget(stat_widget)
         statistics_layout.addWidget(months_tickets_button)
-        statistics_layout.addWidget(all_tickets_button)
+        statistics_layout.addWidget(month_revenue_button)
         statistics_layout.addWidget(tickets_by_cashier_button)
         statistics_layout.addWidget(admin_picture_label)
         statistics_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)

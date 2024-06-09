@@ -37,14 +37,16 @@ def get_tickets_sold_in_last_30_days():
         return db.fetch_data(query)
 
 
-# Запит "Загальна кількість проданих квитків"
-def get_total_tickets():
+# Запит "Дохід компанії за останній місяць"
+def get_total_income_last_30_days():
     query = """
-    SELECT COUNT(*) AS total_tickets
-    FROM Ticket;
+    SELECT SUM(price) AS total_income
+    FROM Ticket
+    WHERE sale_date >= CURRENT_DATE - INTERVAL '30 days';
     """
     with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-        return db.fetch_data(query)
+        result = db.fetch_data(query)
+        return result[0][0] if result else 0
 
 
 # Запит "Кількість квитків, проданих кожним касиром"
