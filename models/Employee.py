@@ -28,7 +28,7 @@ class Employee:
             VALUES (%s, %s, %s, %s, %s, %s) RETURNING employee_id
         """
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.employee_id = db.execute_query(query, (self.full_name, self.employee_position, self.address, self.phone_number, self.login, hashed_password))[0][0]
+            self.employee_id = db.execute_query_and_return_one(query, (self.full_name, self.employee_position, self.address, self.phone_number, self.login, hashed_password))[0]
 
     def update(self):
         if not self.employee_id:
@@ -94,3 +94,11 @@ class Employee:
                     return Employee(employee_id, full_name, employee_position, address, phone_number, login,
                                     hashed_db_password)
         return None
+
+    # Функція перевірки унікальності логіну
+    @staticmethod
+    def is_login_unique(login):
+        query = "SELECT 1 FROM employee WHERE login = %s"
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            result = db.fetch_data(query, (login,))
+            return len(result) == 0

@@ -3,6 +3,7 @@ from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QWidget,
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt, QSize
 from src.styles import *
+from models.Employee import Employee
 
 
 # Вікно додавання співробітника
@@ -299,6 +300,52 @@ class AddEmployeeDialog(QDialog):
         add_button_widget.setLayout(add_button_layout)
 
         # Обробка події натискання кнопки "Додати"
+        def add_employee():
+            full_name = full_name_line_edit.text().strip()
+            employee_position = employee_position_combobox.currentText().strip()
+            address = address_line_edit.text().strip()
+            phone_number = phone_number_line_edit.text().strip()
+            login = login_line_edit.text().strip()
+            password = password_line_edit.text().strip()
+
+            # Перевірка заповненості полів
+            if ((not full_name or full_name == "ПІБ співробітника") or (not employee_position) or
+                    (not address or address == "Адреса") or (not phone_number or phone_number == "Номер телефону") or
+                    (not login or login == "Логін") or (not password or password == "Пароль")):
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Всі поля мають бути заповнені")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                return
+
+            # Перевірка унікальності логіну
+            if not Employee.is_login_unique(login):
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Користувач з таким логіном вже існує")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                return
+
+            # Додавання нового співробітника
+            try:
+                new_employee = Employee(
+                    full_name=full_name,
+                    employee_position=employee_position,
+                    address=address,
+                    phone_number=phone_number,
+                    login=login,
+                    employee_password=password
+                )
+                new_employee.save()
+                msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Співробітника успішно додано")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                self.close()
+            except Exception as e:
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", str(e))
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+
+        # Підключення команди до кнопки
+        add_button.clicked.connect(add_employee)
 
         # Кнопка "Відмінити"
         exit_button = QPushButton()
