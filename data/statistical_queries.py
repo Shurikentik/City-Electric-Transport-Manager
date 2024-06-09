@@ -29,12 +29,12 @@ def get_routes_starting_with_center():
 # Запит "Усі квитки, продані за останній місяць"
 def get_tickets_sold_in_last_30_days():
     query = """
-    SELECT ticket_id, price, sale_date
+    SELECT *
     FROM Ticket
     WHERE sale_date BETWEEN NOW() - INTERVAL '30 DAY' AND NOW();
     """
     with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-        return db.fetch_data(query)
+        return db.fetch_query_result(query)
 
 
 # Запит "Дохід компанії за останній місяць"
@@ -52,14 +52,14 @@ def get_total_income_last_30_days():
 # Запит "Кількість квитків, проданих кожним касиром"
 def get_tickets_sold_by_employee():
     query = """
-    SELECT e.full_name, COUNT(t.ticket_id) AS tickets_sold
+    SELECT e.employee_id, e.full_name, COUNT(t.ticket_id) AS tickets_sold
     FROM Ticket t
     JOIN Employee e ON t.employee_id = e.employee_id
-    GROUP BY e.full_name
+    GROUP BY e.employee_id, e.full_name
     ORDER BY tickets_sold DESC;
     """
     with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-        return db.fetch_data(query)
+        return db.fetch_query_result(query)
 
 
 # Запит "Транспортні засоби, які наразі знаходяться на ремонті"

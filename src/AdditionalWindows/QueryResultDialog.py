@@ -52,12 +52,12 @@ class QueryResultDialog(QDialog):
         self.table_widget = QTableWidget()
 
         # Виконання запиту та отримання результату
-        result = self.query_function()
+        column_names, result = self.query_function()
         if result:
-            column_count = len(result[0])
+            column_count = len(column_names)
             self.table_widget.setRowCount(len(result))
             self.table_widget.setColumnCount(column_count)
-            self.table_widget.setHorizontalHeaderLabels([desc[0] for desc in result[0].keys()])
+            self.table_widget.setHorizontalHeaderLabels(column_names)
 
             for row, row_data in enumerate(result):
                 for col, value in enumerate(row_data):

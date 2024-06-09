@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt
 from styles import *
 from AdditionalWindows.ConfirmDialog import ConfirmDialog
 from AdditionalWindows.TableDialog import TableDialog
+from AdditionalWindows.QueryResultDialog import QueryResultDialog
 from models.Benefit import Benefit
 from models.Ticket import Ticket
 from models.Tariff import Tariff
@@ -209,6 +210,11 @@ class AdminWidget(QWidget):
         months_tickets_button.setFont(text_font2)
         months_tickets_button.setFixedWidth(1250)
         months_tickets_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        months_tickets_button.clicked.connect(
+            lambda: self.view_query_result(title_name="Квитки за останній місяць",
+                                           query_function=get_tickets_sold_in_last_30_days,
+                                           table_width=1490)
+        )
 
         # Підключення обробників подій для зміни курсора
         months_tickets_button.enterEvent = main_window.on_enter_event
@@ -241,13 +247,18 @@ class AdminWidget(QWidget):
 
         # Кнопка "Кількість квитків, проданих кожним касиром"
         tickets_by_cashier_button = QPushButton()
-        tickets_by_cashier_button.setIcon(QIcon('../resources/icons/ticket_icon.svg'))
+        tickets_by_cashier_button.setIcon(QIcon('../resources/icons/human_icon.svg'))
         tickets_by_cashier_button.setText("Кількість квитків за касиром")
         tickets_by_cashier_button.setIconSize(tickets_by_cashier_button.sizeHint() * 3)
         tickets_by_cashier_button.setStyleSheet(button_style)
         tickets_by_cashier_button.setFont(text_font2)
         tickets_by_cashier_button.setFixedWidth(1250)
         tickets_by_cashier_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        tickets_by_cashier_button.clicked.connect(
+            lambda: self.view_query_result(title_name="Кількість квитків за касиром",
+                                           query_function=get_tickets_sold_by_employee,
+                                           table_width=1600, table_max_height=322)
+        )
 
         # Підключення обробників подій для зміни курсора
         tickets_by_cashier_button.enterEvent = main_window.on_enter_event
@@ -288,6 +299,12 @@ class AdminWidget(QWidget):
                    table_max_height=None, is_add_button=True):
         dialog = TableDialog(title_name, table_name, model_class, add_edit_class, table_width,
                              table_max_height=table_max_height, is_add_button=is_add_button)
+        dialog.exec()
+
+    # Функція перегляду результату запиту
+    def view_query_result(self, title_name, query_function, table_width, table_max_height=None):
+        dialog = QueryResultDialog(title_label=title_name, query_function=query_function, table_width=table_width,
+                                   table_max_height=table_max_height)
         dialog.exec()
 
     # Обробка події при натисканні кнопки "Вийти із облікового запису"

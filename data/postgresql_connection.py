@@ -60,6 +60,19 @@ class Database:
             messagebox.showerror("Помилка", str(e))
             return None
 
+    def fetch_query_result(self, query, params=None):
+        try:
+            if params:
+                self.cur.execute(query, params)
+            else:
+                self.cur.execute(query)
+            data = self.cur.fetchall()
+            column_names = [desc[0] for desc in self.cur.description]
+            return column_names, data
+        except Exception as e:
+            messagebox.showerror("Помилка", str(e))
+            return None, None
+
     def execute_query_and_return_one(self, query, params=None):
         try:
             if params:
