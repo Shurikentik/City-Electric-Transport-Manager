@@ -7,6 +7,7 @@ from AdditionalWindows.TableDialog import TableDialog
 from AdditionalWindows.QueryResultDialog import QueryResultDialog
 
 
+# Вікно для диспетчерів
 class DispatcherWidget(QWidget):
     def __init__(self, main_window, employee):
         super().__init__()

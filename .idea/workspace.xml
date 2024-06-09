@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic for adding new users by admin">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added layout for DispatcherWidget.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DriverWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DriverWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -438,11 +438,26 @@
       <option name="project" value="LOCAL" />
       <updated>1717934745947</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="added layout for DispatcherWidget.py">
+      <option name="closed" value="true" />
+      <created>1717943049701</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1717943049701</updated>
+    </task>
+    <task id="LOCAL-00045" summary="added layout for DispatcherWidget.py">
+      <option name="closed" value="true" />
+      <created>1717943077312</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1717943077312</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added Route class" />
     <MESSAGE value="added ProfileSettingsWidget and styles.py" />
     <MESSAGE value="changed logic in switching ProfileSettingsWidget.py and CashierWidget.py" />
     <MESSAGE value="added logic to updating profile" />
@@ -467,6 +482,7 @@
     <MESSAGE value="added logic to showing edit_button in TableDialog.py" />
     <MESSAGE value="added AddEmployeeDialog.py" />
     <MESSAGE value="added logic for adding new users by admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="added logic for adding new users by admin" />
+    <MESSAGE value="added layout for DispatcherWidget.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added layout for DispatcherWidget.py" />
   </component>
 </project>
