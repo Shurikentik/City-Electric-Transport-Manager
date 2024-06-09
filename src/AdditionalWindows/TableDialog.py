@@ -9,7 +9,7 @@ from src.styles import *
 # Вікно для показування таблиць бази даних
 class TableDialog(QDialog):
     def __init__(self, title_name, table_name, model_class, add_edit_class, table_width,
-                 parent=None, table_max_height=None, is_add_button=True):
+                 parent=None, table_max_height=None, is_add_button=True, is_edit_button=True):
         super().__init__(parent)
         # Приховання назви вікна (верхньої панелі)
         self.setWindowFlag(Qt.FramelessWindowHint)
@@ -21,6 +21,7 @@ class TableDialog(QDialog):
         self.table_width = table_width
         self.table_max_height = table_max_height
         self.is_add_button = is_add_button
+        self.is_edit_button = is_edit_button
 
         # Встановлення градієнтного фону через стилі
         self.setStyleSheet("""
@@ -60,46 +61,50 @@ class TableDialog(QDialog):
         button_layout = QHBoxLayout()
 
         # Кнопка "Додати"
-        add_button = QPushButton()
-        add_button.setIcon(QIcon('../resources/icons/add_icon.svg'))
-        add_button.setText("Додати")
-        add_button.setIconSize(add_button.sizeHint() * 3)
-        add_button.setStyleSheet(button_style)
-        add_button.setFont(text_font2)
-        add_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        add_button.setFixedWidth(550)
-        add_button.clicked.connect(self.open_add_dialog)
+        if self.is_add_button:
+            add_button = QPushButton()
+            add_button.setIcon(QIcon('../resources/icons/add_icon.svg'))
+            add_button.setText("Додати")
+            add_button.setIconSize(add_button.sizeHint() * 3)
+            add_button.setStyleSheet(button_style)
+            add_button.setFont(text_font2)
+            add_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+            add_button.setFixedWidth(550)
+            add_button.clicked.connect(self.open_add_dialog)
 
-        # Підключення обробників подій для зміни курсора
-        add_button.enterEvent = self.on_enter_event
-        add_button.leaveEvent = self.on_leave_event
+            # Підключення обробників подій для зміни курсора
+            add_button.enterEvent = self.on_enter_event
+            add_button.leaveEvent = self.on_leave_event
 
-        add_button_layout = QHBoxLayout()
-        add_button_layout.addWidget(add_button)
-        add_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        add_button_widget = QWidget()
-        add_button_widget.setLayout(add_button_layout)
+            add_button_layout = QHBoxLayout()
+            add_button_layout.addWidget(add_button)
+            add_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+            add_button_widget = QWidget()
+            add_button_widget.setLayout(add_button_layout)
+            button_layout.addWidget(add_button_widget)
 
         # Кнопка "Змінити"
-        edit_button = QPushButton()
-        edit_button.setIcon(QIcon('../resources/icons/edit_icon.svg'))
-        edit_button.setText("Змінити")
-        edit_button.setIconSize(edit_button.sizeHint() * 3)
-        edit_button.setStyleSheet(button_style)
-        edit_button.setFont(text_font2)
-        edit_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        edit_button.setFixedWidth(550)
-        edit_button.clicked.connect(self.open_edit_dialog)
+        if self.is_edit_button:
+            edit_button = QPushButton()
+            edit_button.setIcon(QIcon('../resources/icons/edit_icon.svg'))
+            edit_button.setText("Змінити")
+            edit_button.setIconSize(edit_button.sizeHint() * 3)
+            edit_button.setStyleSheet(button_style)
+            edit_button.setFont(text_font2)
+            edit_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+            edit_button.setFixedWidth(550)
+            edit_button.clicked.connect(self.open_edit_dialog)
 
-        # Підключення обробників подій для зміни курсора
-        edit_button.enterEvent = self.on_enter_event
-        edit_button.leaveEvent = self.on_leave_event
+            # Підключення обробників подій для зміни курсора
+            edit_button.enterEvent = self.on_enter_event
+            edit_button.leaveEvent = self.on_leave_event
 
-        edit_button_layout = QHBoxLayout()
-        edit_button_layout.addWidget(edit_button)
-        edit_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        edit_button_widget = QWidget()
-        edit_button_widget.setLayout(edit_button_layout)
+            edit_button_layout = QHBoxLayout()
+            edit_button_layout.addWidget(edit_button)
+            edit_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+            edit_button_widget = QWidget()
+            edit_button_widget.setLayout(edit_button_layout)
+            button_layout.addWidget(edit_button_widget)
 
         # Кнопка "Видалити"
         delete_button = QPushButton()
@@ -121,10 +126,6 @@ class TableDialog(QDialog):
         delete_button_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         delete_button_widget = QWidget()
         delete_button_widget.setLayout(delete_button_layout)
-
-        if self.is_add_button:
-            button_layout.addWidget(add_button_widget)
-        button_layout.addWidget(edit_button_widget)
         button_layout.addWidget(delete_button_widget)
 
         layout.addLayout(button_layout)

@@ -60,6 +60,10 @@ class AdminWidget(QWidget):
         employee_table_button.setFont(text_font2)
         employee_table_button.setFixedWidth(1250)
         employee_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        employee_table_button.clicked.connect(lambda: self.view_table("Співробітники", "employee",
+                                                                      Employee, None,
+                                                                      2000,
+                                                                      is_add_button=False, is_edit_button=False))
 
         # Підключення обробників подій для зміни курсора
         employee_table_button.enterEvent = main_window.on_enter_event
@@ -110,7 +114,7 @@ class AdminWidget(QWidget):
         tariff_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         tariff_table_button.clicked.connect(lambda: self.view_table("Тарифи", "tariff",
                                                                     Tariff, AddEditTariffDialog,
-                                                                    1200, table_max_height=322))
+                                                                    1250, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
         tariff_table_button.enterEvent = main_window.on_enter_event
@@ -142,6 +146,10 @@ class AdminWidget(QWidget):
         ticket_table_button.setFont(text_font2)
         ticket_table_button.setFixedWidth(1250)
         ticket_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        ticket_table_button.clicked.connect(lambda: self.view_table("Квитки", "ticket",
+                                                                    Ticket, None,
+                                                                    1500,
+                                                                    is_add_button=False, is_edit_button=False))
 
         # Підключення обробників подій для зміни курсора
         ticket_table_button.enterEvent = main_window.on_enter_event
@@ -217,7 +225,7 @@ class AdminWidget(QWidget):
         months_tickets_button.clicked.connect(
             lambda: self.view_query_result(title_name="Квитки за останній місяць",
                                            query_function=get_tickets_sold_in_last_30_days,
-                                           table_width=1490)
+                                           table_width=1530)
         )
 
         # Підключення обробників подій для зміни курсора
@@ -300,9 +308,10 @@ class AdminWidget(QWidget):
 
     # Функція перегляду таблиці
     def view_table(self, title_name, table_name, model_class, add_edit_class, table_width,
-                   table_max_height=None, is_add_button=True):
+                   table_max_height=None, is_add_button=True, is_edit_button=True):
         dialog = TableDialog(title_name, table_name, model_class, add_edit_class, table_width,
-                             table_max_height=table_max_height, is_add_button=is_add_button)
+                             table_max_height=table_max_height, is_add_button=is_add_button,
+                             is_edit_button=is_edit_button)
         dialog.exec()
 
     # Функція перегляду результату запиту

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added showing results of queries in AdminWidget.py">
-      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTariffDialog.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEditTariffDialog.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Tariff.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Tariff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/TableDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/TableDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdminWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -399,11 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717913799078</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="added AddEditTariffDialog.py">
+      <option name="closed" value="true" />
+      <created>1717922803468</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1717922803468</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added transferring employee to CashierWidget.py" />
     <MESSAGE value="added Ticket class" />
     <MESSAGE value="added Transport class" />
     <MESSAGE value="added Repair class" />
@@ -428,6 +434,7 @@
     <MESSAGE value="changed get_total_tickets query to get_total_incom_last_30_days query in statistical_queries.py, added showing result of this query by clicking corresponding button in AdminWidget.py" />
     <MESSAGE value="added QueryResultDialog.py" />
     <MESSAGE value="added showing results of queries in AdminWidget.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added showing results of queries in AdminWidget.py" />
+    <MESSAGE value="added AddEditTariffDialog.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added AddEditTariffDialog.py" />
   </component>
 </project>
