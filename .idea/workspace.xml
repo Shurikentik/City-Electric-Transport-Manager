@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEmployeeDialog.py">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added logic for adding new users by admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AddEditDialogs/AddEmployeeDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEmployeeDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/SaleTicketWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -430,11 +430,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717931402207</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="added logic for adding new users by admin">
+      <option name="closed" value="true" />
+      <created>1717934745947</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1717934745947</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added Repair class" />
     <MESSAGE value="added Route class" />
     <MESSAGE value="added ProfileSettingsWidget and styles.py" />
     <MESSAGE value="changed logic in switching ProfileSettingsWidget.py and CashierWidget.py" />
@@ -459,6 +466,7 @@
     <MESSAGE value="added AddEditTariffDialog.py" />
     <MESSAGE value="added logic to showing edit_button in TableDialog.py" />
     <MESSAGE value="added AddEmployeeDialog.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added AddEmployeeDialog.py" />
+    <MESSAGE value="added logic for adding new users by admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="added logic for adding new users by admin" />
   </component>
 </project>

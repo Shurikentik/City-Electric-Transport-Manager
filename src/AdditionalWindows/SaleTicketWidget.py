@@ -8,7 +8,7 @@ from models.Benefit import Benefit
 from models.controllers.TicketController import TicketController
 
 
-# Віджет для налаштування профілю
+# Віджет для продажу квитка
 class SaleTicketWidget(QWidget):
     def __init__(self, main_window, employee):
         super().__init__()
