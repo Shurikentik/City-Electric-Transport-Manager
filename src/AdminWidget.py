@@ -13,6 +13,7 @@ from models.TransportType import TransportType
 from models.Employee import Employee
 from AddEditDialogs.AddEditTransportTypeDialog import AddEditTransportTypeDialog
 from AddEditDialogs.AddEditValidityTypeDialog import AddEditValidityTypeDialog
+from AddEditDialogs.AddEditTariffDialog import AddEditTariffDialog
 from AddEditDialogs.AddEditBenefitDialog import AddEditBenefitDialog
 from data.statistical_queries import *
 
@@ -107,6 +108,9 @@ class AdminWidget(QWidget):
         tariff_table_button.setFont(text_font2)
         tariff_table_button.setFixedWidth(1250)
         tariff_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        tariff_table_button.clicked.connect(lambda: self.view_table("Тарифи", "tariff",
+                                                                    Tariff, AddEditTariffDialog,
+                                                                    1200, table_max_height=322))
 
         # Підключення обробників подій для зміни курсора
         tariff_table_button.enterEvent = main_window.on_enter_event
