@@ -11,6 +11,7 @@ from models.Tariff import Tariff
 from models.ValidityType import ValidityType
 from models.TransportType import TransportType
 from models.Employee import Employee
+from AddEditDialogs.AddEmployeeDialog import AddEmployeeDialog
 from AddEditDialogs.AddEditTransportTypeDialog import AddEditTransportTypeDialog
 from AddEditDialogs.AddEditValidityTypeDialog import AddEditValidityTypeDialog
 from AddEditDialogs.AddEditTariffDialog import AddEditTariffDialog
@@ -60,10 +61,12 @@ class AdminWidget(QWidget):
         employee_table_button.setFont(text_font2)
         employee_table_button.setFixedWidth(1250)
         employee_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        employee_table_button.clicked.connect(lambda: self.view_table("Співробітники", "employee",
-                                                                      Employee, None,
-                                                                      2000,
-                                                                      is_add_button=False, is_edit_button=False))
+        employee_table_button.clicked.connect(
+            lambda: self.view_table("Співробітники", "employee",
+                                    Employee, AddEmployeeDialog, 2000,
+                                    is_add_button=True, is_edit_button=False,
+                                    current_admin_id=self.employee.employee_id)
+        )
 
         # Підключення обробників подій для зміни курсора
         employee_table_button.enterEvent = main_window.on_enter_event
@@ -308,10 +311,11 @@ class AdminWidget(QWidget):
 
     # Функція перегляду таблиці
     def view_table(self, title_name, table_name, model_class, add_edit_class, table_width,
-                   table_max_height=None, is_add_button=True, is_edit_button=True):
+                   table_max_height=None, is_add_button=True, is_edit_button=True,
+                   current_admin_id=None):
         dialog = TableDialog(title_name, table_name, model_class, add_edit_class, table_width,
                              table_max_height=table_max_height, is_add_button=is_add_button,
-                             is_edit_button=is_edit_button)
+                             is_edit_button=is_edit_button, current_admin_id=current_admin_id)
         dialog.exec()
 
     # Функція перегляду результату запиту

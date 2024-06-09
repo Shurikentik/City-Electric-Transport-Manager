@@ -4,12 +4,14 @@ from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
 from src.AdditionalWindows.ConfirmDialog import ConfirmDialog
 from src.styles import *
+from models.Employee import Employee
 
 
 # Вікно для показування таблиць бази даних
 class TableDialog(QDialog):
     def __init__(self, title_name, table_name, model_class, add_edit_class, table_width,
-                 parent=None, table_max_height=None, is_add_button=True, is_edit_button=True):
+                 parent=None, table_max_height=None, is_add_button=True, is_edit_button=True,
+                 current_admin_id=None):
         super().__init__(parent)
         # Приховання назви вікна (верхньої панелі)
         self.setWindowFlag(Qt.FramelessWindowHint)
@@ -22,6 +24,7 @@ class TableDialog(QDialog):
         self.table_max_height = table_max_height
         self.is_add_button = is_add_button
         self.is_edit_button = is_edit_button
+        self.current_admin_id = current_admin_id
 
         # Встановлення градієнтного фону через стилі
         self.setStyleSheet("""
@@ -239,6 +242,14 @@ class TableDialog(QDialog):
         selected_row = self.table_widget.row(selected_items[0])
         item_id = self.table_widget.item(selected_row, 0).text()
         instance = self.model_class.get_by_id(item_id)
+
+        # Перевірка, чи не видаляє адміністратор самого себе
+        if (isinstance(instance, Employee) and self.current_admin_id is not None
+                and instance.employee_id == self.current_admin_id):
+            msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Ви не можете видалити самого себе")
+            msg_box.setStyleSheet(message_box_style)
+            msg_box.exec()
+            return
 
         dialog = ConfirmDialog(f"Ви впевнені, що хочете видалити елемент з ID {item_id}?")
         if dialog.exec() == QDialog.Accepted:
