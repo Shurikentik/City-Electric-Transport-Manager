@@ -65,8 +65,11 @@ class QueryResultDialog(QDialog):
                     table_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     self.table_widget.setItem(row, col, table_item)
 
+            # Приховати колонку з ID (першу колонку)
+            self.table_widget.setColumnHidden(0, True)
+
         self.table_widget.setStyleSheet(table_style)
-        self.table_widget.setFont(text_font8)
+        self.table_widget.setFont(text_font6)
         self.table_widget.horizontalHeader().setFont(text_font6)
         self.table_widget.verticalHeader().setFont(text_font6)
         self.table_widget.setFixedWidth(self.table_width)

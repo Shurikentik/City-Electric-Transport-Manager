@@ -7,8 +7,12 @@ from AdditionalWindows.TableDialog import TableDialog
 from AdditionalWindows.QueryResultDialog import QueryResultDialog
 from models.Transport import Transport
 from models.Route import Route
+from models.Schedule import Schedule
+from models.Repair import Repair
+from models.TransportAssignment import TransportAssignment
 from AddEditDialogs.AddEditTransportDialog import AddEditTransportDialog
 from AddEditDialogs.AddEditRouteDialog import AddEditRouteDialog
+from data.statistical_queries import *
 
 
 # Вікно для диспетчерів
@@ -177,60 +181,40 @@ class DispatcherWidget(QWidget):
         stat_title_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         statistics_layout.addLayout(stat_title_layout)
 
-        # Кнопка "Список розкладів за часом"
-        schedule_by_time_button = QPushButton()
-        schedule_by_time_button.setIcon(QIcon('../resources/icons/time_icon.svg'))
-        schedule_by_time_button.setText("Список розкладів за часом")
-        schedule_by_time_button.setIconSize(schedule_by_time_button.sizeHint() * 2.2)
-        schedule_by_time_button.setStyleSheet(button_style)
-        schedule_by_time_button.setFont(text_font5)
-        schedule_by_time_button.setFixedWidth(1250)
-        schedule_by_time_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        statistics_layout.addWidget(schedule_by_time_button)
-
-        # Підключення обробників подій для зміни курсора
-        schedule_by_time_button.enterEvent = self.main_window.on_enter_event
-        schedule_by_time_button.leaveEvent = self.main_window.on_leave_event
-
         # Кнопка "Центральні маршрути"
         central_routes_button = QPushButton()
         central_routes_button.setIcon(QIcon('../resources/icons/route_icon.svg'))
         central_routes_button.setText("Центральні маршрути")
-        central_routes_button.setIconSize(central_routes_button.sizeHint() * 2.2)
+        central_routes_button.setIconSize(central_routes_button.sizeHint() * 3)
         central_routes_button.setStyleSheet(button_style)
-        central_routes_button.setFont(text_font5)
+        central_routes_button.setFont(text_font2)
         central_routes_button.setFixedWidth(1250)
         central_routes_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        central_routes_button.clicked.connect(
+            lambda: self.view_query_result("Центральні маршрути", get_routes_with_center_station,
+                                           1350)
+        )
+
         statistics_layout.addWidget(central_routes_button)
 
         # Підключення обробників подій для зміни курсора
         central_routes_button.enterEvent = self.main_window.on_enter_event
         central_routes_button.leaveEvent = self.main_window.on_leave_event
 
-        # Кнопка "Доступні транспорти"
-        available_transports_button = QPushButton()
-        available_transports_button.setIcon(QIcon('../resources/icons/trolleybus_icon.svg'))
-        available_transports_button.setText("Доступні транспорти")
-        available_transports_button.setIconSize(available_transports_button.sizeHint() * 2.2)
-        available_transports_button.setStyleSheet(button_style)
-        available_transports_button.setFont(text_font5)
-        available_transports_button.setFixedWidth(1250)
-        available_transports_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        statistics_layout.addWidget(available_transports_button)
-
-        # Підключення обробників подій для зміни курсора
-        available_transports_button.enterEvent = self.main_window.on_enter_event
-        available_transports_button.leaveEvent = self.main_window.on_leave_event
-
         # Кнопка "Журнал виходу на маршрут"
         journal_button = QPushButton()
         journal_button.setIcon(QIcon('../resources/icons/journal_icon.svg'))
         journal_button.setText("Журнал виходу на маршрут")
-        journal_button.setIconSize(journal_button.sizeHint() * 2.2)
+        journal_button.setIconSize(journal_button.sizeHint() * 3)
         journal_button.setStyleSheet(button_style)
-        journal_button.setFont(text_font5)
+        journal_button.setFont(text_font2)
         journal_button.setFixedWidth(1250)
         journal_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        journal_button.clicked.connect(
+            lambda: self.view_table("Виходи на маршрут", "transportassignment",
+                                    TransportAssignment, None, 2000,
+                                    is_add_button=False, is_edit_button=False)
+        )
         statistics_layout.addWidget(journal_button)
 
         # Підключення обробників подій для зміни курсора
@@ -241,46 +225,39 @@ class DispatcherWidget(QWidget):
         transports_in_repair_button = QPushButton()
         transports_in_repair_button.setIcon(QIcon('../resources/icons/wrench_icon.svg'))
         transports_in_repair_button.setText("Транспорти в ремонті")
-        transports_in_repair_button.setIconSize(transports_in_repair_button.sizeHint() * 2.2)
+        transports_in_repair_button.setIconSize(transports_in_repair_button.sizeHint() * 3)
         transports_in_repair_button.setStyleSheet(button_style)
-        transports_in_repair_button.setFont(text_font5)
+        transports_in_repair_button.setFont(text_font2)
         transports_in_repair_button.setFixedWidth(1250)
         transports_in_repair_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        transports_in_repair_button.clicked.connect(
+            lambda: self.view_query_result("Транспорти в ремонті", get_transport_under_repair,
+                                           2200)
+        )
         statistics_layout.addWidget(transports_in_repair_button)
 
         # Підключення обробників подій для зміни курсора
         transports_in_repair_button.enterEvent = self.main_window.on_enter_event
         transports_in_repair_button.leaveEvent = self.main_window.on_leave_event
 
-        # Кнопка "Транспорти не в ремонті"
-        transports_not_in_repair_button = QPushButton()
-        transports_not_in_repair_button.setIcon(QIcon('../resources/icons/wrench_icon.svg'))
-        transports_not_in_repair_button.setText("Транспорти не в ремонті")
-        transports_not_in_repair_button.setIconSize(transports_not_in_repair_button.sizeHint() * 2.2)
-        transports_not_in_repair_button.setStyleSheet(button_style)
-        transports_not_in_repair_button.setFont(text_font5)
-        transports_not_in_repair_button.setFixedWidth(1250)
-        transports_not_in_repair_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        statistics_layout.addWidget(transports_not_in_repair_button)
+        # Кнопка "Маршрути без розкладу"
+        routes_without_schedule_button = QPushButton()
+        routes_without_schedule_button.setIcon(QIcon('../resources/icons/route_icon.svg'))
+        routes_without_schedule_button.setText("Маршрути без розкладу")
+        routes_without_schedule_button.setIconSize(routes_without_schedule_button.sizeHint() * 3)
+        routes_without_schedule_button.setStyleSheet(button_style)
+        routes_without_schedule_button.setFont(text_font2)
+        routes_without_schedule_button.setFixedWidth(1250)
+        routes_without_schedule_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        routes_without_schedule_button.clicked.connect(
+            lambda: self.view_query_result("Маршрути без розкладу", find_routes_without_schedule,
+                                           1350)
+        )
+        statistics_layout.addWidget(routes_without_schedule_button)
 
         # Підключення обробників подій для зміни курсора
-        transports_not_in_repair_button.enterEvent = self.main_window.on_enter_event
-        transports_not_in_repair_button.leaveEvent = self.main_window.on_leave_event
-
-        # Кнопка "Статистика стану транспортів"
-        repair_statistics_button = QPushButton()
-        repair_statistics_button.setIcon(QIcon('../resources/icons/wrench_icon.svg'))
-        repair_statistics_button.setText("Статистика стану транспортів")
-        repair_statistics_button.setIconSize(repair_statistics_button.sizeHint() * 2.2)
-        repair_statistics_button.setStyleSheet(button_style)
-        repair_statistics_button.setFont(text_font5)
-        repair_statistics_button.setFixedWidth(1250)
-        repair_statistics_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        statistics_layout.addWidget(repair_statistics_button)
-
-        # Підключення обробників подій для зміни курсора
-        repair_statistics_button.enterEvent = self.main_window.on_enter_event
-        repair_statistics_button.leaveEvent = self.main_window.on_leave_event
+        routes_without_schedule_button.enterEvent = self.main_window.on_enter_event
+        routes_without_schedule_button.leaveEvent = self.main_window.on_leave_event
 
         # Додавання картинки диспетчера
         dispatcher_picture_label = QLabel()

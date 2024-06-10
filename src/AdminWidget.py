@@ -215,6 +215,7 @@ class AdminWidget(QWidget):
 
         stat_widget = QWidget()
         stat_widget.setLayout(stat_layout)
+        statistics_layout.addWidget(stat_widget)
 
         # Кнопка "Усі квитки, продані за останній місяць"
         months_tickets_button = QPushButton()
@@ -228,14 +229,35 @@ class AdminWidget(QWidget):
         months_tickets_button.clicked.connect(
             lambda: self.view_query_result(title_name="Квитки за останній місяць",
                                            query_function=get_tickets_sold_in_last_30_days,
-                                           table_width=1530)
+                                           table_width=2250)
         )
+        statistics_layout.addWidget(months_tickets_button)
 
         # Підключення обробників подій для зміни курсора
         months_tickets_button.enterEvent = main_window.on_enter_event
         months_tickets_button.leaveEvent = main_window.on_leave_event
 
-        # Кнопка "Загальна кількість проданих квитків"
+        # Кнопка "Квитки з пільгами"
+        tickets_with_benefit_button = QPushButton()
+        tickets_with_benefit_button.setIcon(QIcon('../resources/icons/percent_icon.svg'))
+        tickets_with_benefit_button.setText("Квитки з пільгами")
+        tickets_with_benefit_button.setIconSize(tickets_with_benefit_button.sizeHint() * 3)
+        tickets_with_benefit_button.setStyleSheet(button_style)
+        tickets_with_benefit_button.setFont(text_font2)
+        tickets_with_benefit_button.setFixedWidth(1250)
+        tickets_with_benefit_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        tickets_with_benefit_button.clicked.connect(
+            lambda: self.view_query_result(title_name="Квитки з пільгами",
+                                           query_function=get_tickets_with_benefits,
+                                           table_width=2250)
+        )
+        statistics_layout.addWidget(tickets_with_benefit_button)
+
+        # Підключення обробників подій для зміни курсора
+        tickets_with_benefit_button.enterEvent = self.main_window.on_enter_event
+        tickets_with_benefit_button.leaveEvent = self.main_window.on_leave_event
+
+        # Кнопка "Дохід компанії за місяць"
         month_revenue_button = QPushButton()
         month_revenue_button.setIcon(QIcon('../resources/icons/money_bag_icon.svg'))
         month_revenue_button.setText("Дохід компанії за місяць")
@@ -255,6 +277,7 @@ class AdminWidget(QWidget):
 
         # Підключення команди до кнопки
         month_revenue_button.clicked.connect(show_month_revenue)
+        statistics_layout.addWidget(month_revenue_button)
 
         # Підключення обробників подій для зміни курсора
         month_revenue_button.enterEvent = main_window.on_enter_event
@@ -272,26 +295,62 @@ class AdminWidget(QWidget):
         tickets_by_cashier_button.clicked.connect(
             lambda: self.view_query_result(title_name="Кількість квитків за касиром",
                                            query_function=get_tickets_sold_by_employee,
-                                           table_width=1600, table_max_height=322)
+                                           table_width=1100, table_max_height=290)
         )
+        statistics_layout.addWidget(tickets_by_cashier_button)
 
         # Підключення обробників подій для зміни курсора
         tickets_by_cashier_button.enterEvent = main_window.on_enter_event
         tickets_by_cashier_button.leaveEvent = main_window.on_leave_event
+
+        # Кнопка "Квитки з ціною нижче середньої"
+        tickets_price_less_than_avg_button = QPushButton()
+        tickets_price_less_than_avg_button.setIcon(QIcon('../resources/icons/money_icon.svg'))
+        tickets_price_less_than_avg_button.setText("Квитки з ціною нижче середньої")
+        tickets_price_less_than_avg_button.setIconSize(tickets_price_less_than_avg_button.sizeHint() * 3)
+        tickets_price_less_than_avg_button.setStyleSheet(button_style)
+        tickets_price_less_than_avg_button.setFont(text_font2)
+        tickets_price_less_than_avg_button.setFixedWidth(1250)
+        tickets_price_less_than_avg_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        tickets_price_less_than_avg_button.clicked.connect(
+            lambda: self.view_query_result(title_name="Квитки з ціною нижче середньої",
+                                           query_function=find_tickets_below_average_price,
+                                           table_width=2250)
+        )
+        statistics_layout.addWidget(tickets_price_less_than_avg_button)
+
+        # Підключення обробників подій для зміни курсора
+        tickets_price_less_than_avg_button.enterEvent = self.main_window.on_enter_event
+        tickets_price_less_than_avg_button.leaveEvent = self.main_window.on_leave_event
+
+        # Кнопка "Статистика цін квитків"
+        ticket_price_statistic_button = QPushButton()
+        ticket_price_statistic_button.setIcon(QIcon('../resources/icons/money_icon.svg'))
+        ticket_price_statistic_button.setText("Статистика цін квитків")
+        ticket_price_statistic_button.setIconSize(ticket_price_statistic_button.sizeHint() * 3)
+        ticket_price_statistic_button.setStyleSheet(button_style)
+        ticket_price_statistic_button.setFont(text_font2)
+        ticket_price_statistic_button.setFixedWidth(1250)
+        ticket_price_statistic_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        ticket_price_statistic_button.clicked.connect(
+            lambda: self.view_query_result(title_name="Статистика цін квитків",
+                                           query_function=compare_ticket_prices_with_average,
+                                           table_width=2400)
+        )
+        statistics_layout.addWidget(ticket_price_statistic_button)
+
+        # Підключення обробників подій для зміни курсора
+        ticket_price_statistic_button.enterEvent = self.main_window.on_enter_event
+        ticket_price_statistic_button.leaveEvent = self.main_window.on_leave_event
 
         # Додавання картинки адміна
         admin_picture_label = QLabel()
         admin_image = QImage("../resources/icons/admin_picture.png")
         admin_picture_pixmap = QPixmap(admin_image)
         admin_picture_label.setPixmap(admin_picture_pixmap)
-        admin_picture_label.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignTop)
-
-        # Додавання усіх елементів до розмітки статистики
-        statistics_layout.addWidget(stat_widget)
-        statistics_layout.addWidget(months_tickets_button)
-        statistics_layout.addWidget(month_revenue_button)
-        statistics_layout.addWidget(tickets_by_cashier_button)
+        admin_picture_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         statistics_layout.addWidget(admin_picture_label)
+
         statistics_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         statistics_layout.setSpacing(30)
 
