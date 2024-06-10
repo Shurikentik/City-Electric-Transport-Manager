@@ -5,6 +5,8 @@ from src.styles import *
 from AdditionalWindows.ConfirmDialog import ConfirmDialog
 from AdditionalWindows.TableDialog import TableDialog
 from AdditionalWindows.QueryResultDialog import QueryResultDialog
+from models.Transport import Transport
+from AddEditDialogs.AddEditTransportDialog import AddEditTransportDialog
 
 
 # Вікно для диспетчерів
@@ -55,6 +57,10 @@ class DispatcherWidget(QWidget):
         transport_table_button.setFont(text_font2)
         transport_table_button.setFixedWidth(1250)
         transport_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        transport_table_button.clicked.connect(
+            lambda: self.view_table("Транспортні засоби", "transport",
+                                    Transport, AddEditTransportDialog, 2090)
+        )
         menu_layout.addWidget(transport_table_button)
 
         # Підключення обробників подій для зміни курсора
@@ -290,11 +296,10 @@ class DispatcherWidget(QWidget):
 
     # Функція перегляду таблиці
     def view_table(self, title_name, table_name, model_class, add_edit_class, table_width,
-                   table_max_height=None, is_add_button=True, is_edit_button=True,
-                   current_admin_id=None):
+                   table_max_height=None, is_add_button=True, is_edit_button=True):
         dialog = TableDialog(title_name, table_name, model_class, add_edit_class, table_width,
                              table_max_height=table_max_height, is_add_button=is_add_button,
-                             is_edit_button=is_edit_button, current_admin_id=current_admin_id)
+                             is_edit_button=is_edit_button)
         dialog.exec()
 
     # Функція перегляду результату запиту

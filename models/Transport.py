@@ -19,9 +19,9 @@ class Transport:
             transport_id=row[0],
             transport_number=row[1],
             availability=row[2],
-            technical_condition=row[3],
-            transport_type_id=row[4],
-            employee_id=row[5]
+            transport_type_id=row[3],
+            employee_id=row[4],
+            technical_condition=row[5]
         )
 
     def save(self):
@@ -33,7 +33,7 @@ class Transport:
         params = (self.transport_number, self.availability, self.technical_condition,
                   self.transport_type_id, self.employee_id)
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.transport_id = db.execute_query(query, params)[0][0]
+            self.transport_id = db.execute_query_and_return_one(query, params)[0]
 
     def update(self):
         if not self.transport_id:
@@ -73,3 +73,10 @@ class Transport:
             if row:
                 return Transport.from_db_row(row[0])
             return None
+
+    @staticmethod
+    def is_transport_number_exists(transport_number):
+        query = "SELECT COUNT(*) FROM Transport WHERE transport_number = %s"
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            result = db.fetch_data(query, (transport_number,))
+            return result[0][0] > 0

@@ -102,3 +102,9 @@ class Employee:
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
             result = db.fetch_data(query, (login,))
             return len(result) == 0
+
+    @staticmethod
+    def get_all_drivers():
+        query = "SELECT * FROM employee WHERE employee_position = 'Водій'"
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            return [Employee(*row) for row in db.fetch_data(query)]
