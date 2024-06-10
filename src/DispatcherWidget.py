@@ -6,7 +6,9 @@ from AdditionalWindows.ConfirmDialog import ConfirmDialog
 from AdditionalWindows.TableDialog import TableDialog
 from AdditionalWindows.QueryResultDialog import QueryResultDialog
 from models.Transport import Transport
+from models.Route import Route
 from AddEditDialogs.AddEditTransportDialog import AddEditTransportDialog
+from AddEditDialogs.AddEditRouteDialog import AddEditRouteDialog
 
 
 # Вікно для диспетчерів
@@ -59,7 +61,7 @@ class DispatcherWidget(QWidget):
         transport_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         transport_table_button.clicked.connect(
             lambda: self.view_table("Транспортні засоби", "transport",
-                                    Transport, AddEditTransportDialog, 2090)
+                                    Transport, AddEditTransportDialog, 2100)
         )
         menu_layout.addWidget(transport_table_button)
 
@@ -76,6 +78,10 @@ class DispatcherWidget(QWidget):
         route_table_button.setFont(text_font2)
         route_table_button.setFixedWidth(1250)
         route_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        route_table_button.clicked.connect(
+            lambda: self.view_table("Маршрути", "route",
+                                    Route, AddEditRouteDialog, 1900)
+        )
         menu_layout.addWidget(route_table_button)
 
         # Підключення обробників подій для зміни курсора

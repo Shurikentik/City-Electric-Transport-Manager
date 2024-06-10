@@ -27,7 +27,7 @@ class Route:
         """
         params = (self.route_number, self.start_station, self.end_station)
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.route_id = db.execute_query(query, params)[0][0]
+            self.route_id = db.execute_query_and_return_one(query, params)[0]
 
     def update(self):
         if not self.route_id:
@@ -65,3 +65,10 @@ class Route:
             if row:
                 return Route.from_db_row(row[0])
             return None
+
+    @staticmethod
+    def is_route_number_exists(route_number):
+        query = "SELECT COUNT(*) FROM Route WHERE route_number = %s"
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            result = db.fetch_data(query, (route_number,))
+            return result[0][0] > 0

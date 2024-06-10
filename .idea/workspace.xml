@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added TransportAssignment.py">
-      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportDialog.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEditTransportDialog.py">
+      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditRouteDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Transport.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Transport.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Route.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportDialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -472,11 +472,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717945174361</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="added AddEditTransportDialog.py">
+      <option name="closed" value="true" />
+      <created>1718011301482</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718011301482</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added logic to updating profile" />
     <MESSAGE value="added UpdatePasswordWidget.py" />
     <MESSAGE value="added logic for updating password" />
     <MESSAGE value="added SaleTicketWidget.py" />
@@ -501,16 +508,7 @@
     <MESSAGE value="added layout for DispatcherWidget.py" />
     <MESSAGE value="added layout for DriverWidget.py" />
     <MESSAGE value="added TransportAssignment.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added TransportAssignment.py" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/DispatcherWidget.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="added AddEditTransportDialog.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added AddEditTransportDialog.py" />
   </component>
 </project>

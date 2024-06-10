@@ -279,6 +279,12 @@ class AddEditTransportDialog(QDialog):
                     msg_box.exec()
                     return
 
+                if not transport_number or transport_number == "Номер":
+                    msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Введіть номер транспорту")
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
+                    return
+
                 if transport_number != self.instance.transport_number and Transport.is_transport_number_exists(
                         transport_number):
                     msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", "Транспорт з таким номером вже існує")
