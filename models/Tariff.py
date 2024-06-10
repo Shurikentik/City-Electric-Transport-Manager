@@ -54,6 +54,30 @@ class Tariff:
             return None
 
     @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    t.tariff_id AS "id",
+                    tt.transport_name AS "Тип транспорту",
+                    vt.validity_name AS "Термін чинності",
+                    t.ticket_price AS "Ціна квитка"
+                FROM Tariff t
+                JOIN TransportType tt ON t.transport_type_id = tt.transport_type_id
+                JOIN ValidityType vt ON t.validity_type_id = vt.validity_type_id
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Тип транспорту": row[1],
+                    "Термін чинності": row[2],
+                    "Ціна квитка": row[3]
+                }
+                for row in rows
+            ]
+
+    @staticmethod
     def get_tariff_by_transport_and_validity(transport_type_id, validity_type_id):
         query = "SELECT * FROM Tariff WHERE transport_type_id = %s AND validity_type_id = %s"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:

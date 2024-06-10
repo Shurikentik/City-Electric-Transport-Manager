@@ -78,6 +78,32 @@ class Employee:
                 return Employee(*result[0])
             return None
 
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    employee_id AS "id",
+                    full_name AS "ПІБ",
+                    employee_position AS "Посада",
+                    address AS "Адреса",
+                    phone_number AS "Номер телефону",
+                    login AS "Логін"
+                FROM Employee
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "ПІБ": row[1],
+                    "Посада": row[2],
+                    "Адреса": row[3],
+                    "Номер телефону": row[4],
+                    "Логін": row[5]
+                }
+                for row in rows
+            ]
+
     # Функція верифікації логіну і паролю
     @staticmethod
     def verify_login_password(login, password):

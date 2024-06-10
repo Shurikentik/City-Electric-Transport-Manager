@@ -51,6 +51,26 @@ class Benefit:
                 return Benefit.from_db_row(result[0])
             return None
 
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    benefit_id AS "id",
+                    benefit_name AS "Назва пільги",
+                    discount_modifier AS "Процент знижки"
+                FROM Benefit
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Назва пільги": row[1],
+                    "Процент знижки": row[2]
+                }
+                for row in rows
+            ]
+
     # Функція застосування пільгової знижки до квитка
     def apply_benefit(self, price):
         return round(price * (1 - self.discount_modifier), 2)

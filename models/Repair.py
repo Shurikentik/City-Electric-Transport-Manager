@@ -67,3 +67,28 @@ class Repair:
             if row:
                 return Repair.from_db_row(row[0])
             return None
+
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    r.repair_id AS "id",
+                    t.transport_number AS "Номер транспорту",
+                    r.start_date AS "Дата початку",
+                    r.end_date AS "Дата завершення",
+                    r.description AS "Опис"
+                FROM Repair r
+                JOIN Transport t ON r.transport_id = t.transport_id
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Номер транспорту": row[1],
+                    "Дата початку": row[2],
+                    "Дата завершення": row[3],
+                    "Опис": row[4]
+                }
+                for row in rows
+            ]

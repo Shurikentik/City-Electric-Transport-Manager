@@ -69,3 +69,31 @@ class Schedule:
             if row:
                 return Schedule.from_db_row(row[0])
             return None
+
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    s.schedule_id AS "id",
+                    s.day_of_week AS "День тижня",
+                    s.start_time AS "Час початку",
+                    s.end_time AS "Час завершення",
+                    r.route_number AS "Номер маршруту",
+                    t.transport_number AS "Номер транспорту"
+                FROM Schedule s
+                JOIN Route r ON s.route_id = r.route_id
+                JOIN Transport t ON s.transport_id = t.transport_id
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "День тижня": row[1],
+                    "Час початку": row[2],
+                    "Час завершення": row[3],
+                    "Номер маршруту": row[4],
+                    "Номер транспорту": row[5]
+                }
+                for row in rows
+            ]

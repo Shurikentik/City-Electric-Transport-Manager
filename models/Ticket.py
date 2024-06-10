@@ -70,6 +70,39 @@ class Ticket:
                 return Ticket.from_db_row(row[0])
             return None
 
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                    SELECT 
+                        t.ticket_id AS "id", 
+                        t.price AS "Ціна",                        
+                        tt.transport_name AS "Тип транспорту", 
+                        vt.validity_name AS "Термін чинності", 
+                        COALESCE(b.benefit_name, 'Немає') AS "Пільга", 
+                        t.sale_date AS "Дата продажу",
+                        e.full_name AS "Ким проданий"
+                    FROM Ticket t
+                    LEFT JOIN Tariff tr ON t.tariff_id = tr.tariff_id
+                    LEFT JOIN TransportType tt ON tr.transport_type_id = tt.transport_type_id
+                    LEFT JOIN ValidityType vt ON tr.validity_type_id = vt.validity_type_id
+                    LEFT JOIN Benefit b ON t.benefit_id = b.benefit_id
+                    LEFT JOIN Employee e ON t.employee_id = e.employee_id
+                """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Ціна": row[1],
+                    "Тип транспорту": row[2],
+                    "Термін чинності": row[3],
+                    "Пільга": row[4],
+                    "Дата продажу": row[5],
+                    "Ким проданий": row[6],
+                }
+                for row in rows
+            ]
+
     # Функція для отримання тарифу
     def is_tariff(self, tariff, transport_type_id, validity_type_id):
         self.tariff_id, self.price = tariff.get_tariff_id_and_price(transport_type_id, validity_type_id)

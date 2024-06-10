@@ -41,3 +41,21 @@ class ValidityType:
             if result:
                 return ValidityType(*result[0])
             return None
+
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    validity_type_id AS "id", 
+                    validity_name AS "Термін чинності"
+                FROM ValidityType
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Термін чинності": row[1],
+                }
+                for row in rows
+            ]

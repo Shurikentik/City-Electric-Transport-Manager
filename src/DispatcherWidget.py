@@ -61,7 +61,7 @@ class DispatcherWidget(QWidget):
         transport_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         transport_table_button.clicked.connect(
             lambda: self.view_table("Транспортні засоби", "transport",
-                                    Transport, AddEditTransportDialog, 2100)
+                                    Transport, AddEditTransportDialog, 2200)
         )
         menu_layout.addWidget(transport_table_button)
 
@@ -80,7 +80,7 @@ class DispatcherWidget(QWidget):
         route_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         route_table_button.clicked.connect(
             lambda: self.view_table("Маршрути", "route",
-                                    Route, AddEditRouteDialog, 1900)
+                                    Route, AddEditRouteDialog, 1350)
         )
         menu_layout.addWidget(route_table_button)
 

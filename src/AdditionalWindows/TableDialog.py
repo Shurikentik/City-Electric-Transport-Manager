@@ -136,7 +136,7 @@ class TableDialog(QDialog):
         # Додавання QTableWidget
         self.table_widget = QTableWidget()
         self.table_widget.setStyleSheet(table_style)
-        self.table_widget.setFont(text_font8)
+        self.table_widget.setFont(text_font6)
         self.table_widget.horizontalHeader().setFont(text_font6)
         self.table_widget.verticalHeader().setFont(text_font6)
         self.table_widget.setFixedWidth(self.table_width)
@@ -182,24 +182,24 @@ class TableDialog(QDialog):
         self.setLayout(layout)
 
     def load_table_data(self):
-        items = self.model_class.get_all()
+        items = self.model_class.get_all_for_table()
         if items:
-            column_count = len(items[0].__dict__)
+            column_count = len(items[0])
             self.table_widget.setRowCount(len(items))
             self.table_widget.setColumnCount(column_count)
-            self.table_widget.setHorizontalHeaderLabels(list(items[0].__dict__.keys()))
+
+            # Встановлення заголовків
+            headers = list(items[0].keys())
+            self.table_widget.setHorizontalHeaderLabels(headers)
 
             for row, item in enumerate(items):
-                for col, (key, value) in enumerate(item.__dict__.items()):
+                for col, (key, value) in enumerate(item.items()):
                     table_item = QTableWidgetItem(str(value))
                     table_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)  # Центрування тексту в ячейках
                     self.table_widget.setItem(row, col, table_item)
 
-            # Приховати колонку employee_password, якщо така є
-            header_labels = list(items[0].__dict__.keys())
-            if "employee_password" in header_labels:
-                col_index = header_labels.index("employee_password")
-                self.table_widget.hideColumn(col_index)
+            # Приховати колонку з ID (першу колонку)
+            self.table_widget.setColumnHidden(0, True)
 
         # Зміна ширини колонок відповідно до вмісту
         self.table_widget.resizeColumnsToContents()

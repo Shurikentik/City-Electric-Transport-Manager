@@ -83,7 +83,7 @@ class AdminWidget(QWidget):
         transport_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         transport_type_button.clicked.connect(lambda: self.view_table("Типи електротранспорту", "transporttype",
                                                                       TransportType, AddEditTransportTypeDialog,
-                                                                      820, table_max_height=322))
+                                                                      400, table_max_height=290))
 
         # Підключення обробників подій для зміни курсора
         transport_type_button.enterEvent = main_window.on_enter_event
@@ -100,7 +100,7 @@ class AdminWidget(QWidget):
         validity_type_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         validity_type_button.clicked.connect(lambda: self.view_table("Терміни чинності", "validitytype",
                                                                      ValidityType, AddEditValidityTypeDialog,
-                                                                     885, table_max_height=322))
+                                                                     400, table_max_height=290))
 
         # Підключення обробників подій для зміни курсора
         validity_type_button.enterEvent = main_window.on_enter_event
@@ -117,7 +117,7 @@ class AdminWidget(QWidget):
         tariff_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         tariff_table_button.clicked.connect(lambda: self.view_table("Тарифи", "tariff",
                                                                     Tariff, AddEditTariffDialog,
-                                                                    1250, table_max_height=322))
+                                                                    1085, table_max_height=340))
 
         # Підключення обробників подій для зміни курсора
         tariff_table_button.enterEvent = main_window.on_enter_event
@@ -134,7 +134,7 @@ class AdminWidget(QWidget):
         benefit_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         benefit_table_button.clicked.connect(lambda: self.view_table("Пільги", "benefit",
                                                                      Benefit, AddEditBenefitDialog,
-                                                                     1150, 322))
+                                                                     750, 290))
 
         # Підключення обробників подій для зміни курсора
         benefit_table_button.enterEvent = main_window.on_enter_event
@@ -151,7 +151,7 @@ class AdminWidget(QWidget):
         ticket_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         ticket_table_button.clicked.connect(lambda: self.view_table("Квитки", "ticket",
                                                                     Ticket, None,
-                                                                    1500,
+                                                                    2250,
                                                                     is_add_button=False, is_edit_button=False))
 
         # Підключення обробників подій для зміни курсора

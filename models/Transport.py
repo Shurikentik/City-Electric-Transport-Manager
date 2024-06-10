@@ -75,6 +75,40 @@ class Transport:
             return None
 
     @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    t.transport_id AS "id",
+                    tt.transport_name AS "Тип транспорту",
+                    t.transport_number AS "Номер транспорту",
+                    COALESCE(e.full_name, 'Не призначений') AS "Під керуванням",
+                    CASE 
+                        WHEN t.availability THEN 'Доступний' 
+                        ELSE 'Зайнятий' 
+                    END AS "Доступність",
+                    CASE 
+                        WHEN t.technical_condition THEN 'Робочий' 
+                        ELSE 'Несправний' 
+                    END AS "Технічний стан"
+                FROM Transport t
+                LEFT JOIN TransportType tt ON t.transport_type_id = tt.transport_type_id
+                LEFT JOIN Employee e ON t.employee_id = e.employee_id
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Тип транспорту": row[1],
+                    "Номер транспорту": row[2],
+                    "Під керуванням": row[3],
+                    "Доступність": row[4],
+                    "Технічний стан": row[5]
+                }
+                for row in rows
+            ]
+
+    @staticmethod
     def is_transport_number_exists(transport_number):
         query = "SELECT COUNT(*) FROM Transport WHERE transport_number = %s"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:

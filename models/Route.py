@@ -67,6 +67,28 @@ class Route:
             return None
 
     @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    route_id AS "id",
+                    route_number AS "Номер маршруту",
+                    start_station AS "Початкова станція",
+                    end_station AS "Кінцева станція"
+                FROM Route
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Номер маршруту": row[1],
+                    "Початкова станція": row[2],
+                    "Кінцева станція": row[3]
+                }
+                for row in rows
+            ]
+
+    @staticmethod
     def is_route_number_exists(route_number):
         query = "SELECT COUNT(*) FROM Route WHERE route_number = %s"
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:

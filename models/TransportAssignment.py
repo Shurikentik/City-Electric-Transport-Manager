@@ -71,3 +71,33 @@ class TransportAssignment:
             if row:
                 return TransportAssignment.from_db_row(row[0])
             return None
+
+    @staticmethod
+    def get_all_for_table():
+        query = """
+                SELECT 
+                    ta.transport_assignment_id AS "id",
+                    t.transport_number AS "Номер транспорту",
+                    r.route_number AS "Номер маршруту",
+                    e.full_name AS "Водій",
+                    s.start_time AS "Час виходу за розкладом",
+                    ta.departure_time AS "Реальний час"
+                FROM TransportAssignment ta
+                LEFT JOIN Transport t ON ta.transport_id = t.transport_id
+                LEFT JOIN Route r ON ta.route_id = r.route_id
+                LEFT JOIN Employee e ON ta.employee_id = e.employee_id
+                LEFT JOIN Schedule s ON ta.schedule_id = s.schedule_id
+            """
+        with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
+            rows = db.fetch_data(query)
+            return [
+                {
+                    "id": row[0],
+                    "Номер транспорту": row[1],
+                    "Номер маршруту": row[2],
+                    "Водій": row[3],
+                    "Час виходу за розкладом": row[4],
+                    "Реальний час": row[5]
+                }
+                for row in rows
+            ]

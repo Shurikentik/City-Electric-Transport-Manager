@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEditTransportDialog.py">
-      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditRouteDialog.py" afterDir="false" />
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="added AddEditRouteDialog.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Benefit.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Benefit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Employee.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Employee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Repair.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Route.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditTransportDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Schedule.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Schedule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Tariff.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Tariff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Ticket.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Transport.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/Transport.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/TransportType.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/TransportType.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/ValidityType.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ValidityType.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/TableDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/TableDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdminWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -480,11 +489,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718011301482</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="added AddEditRouteDialog.py">
+      <option name="closed" value="true" />
+      <created>1718015106696</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718015106696</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added UpdatePasswordWidget.py" />
     <MESSAGE value="added logic for updating password" />
     <MESSAGE value="added SaleTicketWidget.py" />
     <MESSAGE value="added ComboBoxes to SaleTicketWidget.py" />
@@ -509,6 +525,7 @@
     <MESSAGE value="added layout for DriverWidget.py" />
     <MESSAGE value="added TransportAssignment.py" />
     <MESSAGE value="added AddEditTransportDialog.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="added AddEditTransportDialog.py" />
+    <MESSAGE value="added AddEditRouteDialog.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="added AddEditRouteDialog.py" />
   </component>
 </project>
