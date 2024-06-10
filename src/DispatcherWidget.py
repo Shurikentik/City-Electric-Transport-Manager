@@ -12,6 +12,7 @@ from models.Repair import Repair
 from models.TransportAssignment import TransportAssignment
 from AddEditDialogs.AddEditTransportDialog import AddEditTransportDialog
 from AddEditDialogs.AddEditRouteDialog import AddEditRouteDialog
+from AddEditDialogs.AddEditSchedule import AddEditScheduleDialog
 from data.statistical_queries import *
 
 
@@ -101,6 +102,10 @@ class DispatcherWidget(QWidget):
         schedule_table_button.setFont(text_font2)
         schedule_table_button.setFixedWidth(1250)
         schedule_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        schedule_table_button.clicked.connect(
+            lambda: self.view_table("Розклади руху", "schedule",
+                                    Schedule, AddEditScheduleDialog, 1500)
+        )
         menu_layout.addWidget(schedule_table_button)
 
         # Підключення обробників подій для зміни курсора

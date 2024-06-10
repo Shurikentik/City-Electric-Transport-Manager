@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="changed displaying database tables">
+    <list default="true" id="a2f81d41-f846-47d7-8291-f45abd95b96a" name="Changes" comment="change statistical_queries.py">
+      <change afterPath="$PROJECT_DIR$/src/AddEditDialogs/AddEditSchedule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/statistical_queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/statistical_queries.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/icons/admin_picture.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/admin_picture.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdditionalWindows/QueryResultDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdditionalWindows/QueryResultDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdminWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminWidget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DispatcherWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DispatcherWidget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,14 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717251558390</updated>
-    </task>
-    <task id="LOCAL-00002" summary="added connection to database">
-      <option name="closed" value="true" />
-      <created>1717258109651</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1717258109651</updated>
     </task>
     <task id="LOCAL-00003" summary="added MainWindow and LoginWidget">
       <option name="closed" value="true" />
@@ -489,11 +478,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718048298287</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="change statistical_queries.py">
+      <option name="closed" value="true" />
+      <created>1718056621795</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1718056621795</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added SaleTicketWidget.py" />
     <MESSAGE value="added ComboBoxes to SaleTicketWidget.py" />
     <MESSAGE value="added TicketController.py" />
     <MESSAGE value="added logic to SaleTicketWidget.py, changes ErrorMessageBoxes' icons, and changed cashier icon" />
@@ -518,6 +514,7 @@
     <MESSAGE value="added AddEditTransportDialog.py" />
     <MESSAGE value="added AddEditRouteDialog.py" />
     <MESSAGE value="changed displaying database tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed displaying database tables" />
+    <MESSAGE value="change statistical_queries.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="change statistical_queries.py" />
   </component>
 </project>
