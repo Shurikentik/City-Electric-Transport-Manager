@@ -31,7 +31,7 @@ class Schedule:
         """
         params = (self.day_of_week, self.start_time, self.end_time, self.route_id, self.transport_id)
         with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
-            self.schedule_id = db.execute_query(query, params)[0][0]
+            self.schedule_id = db.execute_query_and_return_one(query, params)[0]
 
     def update(self):
         if not self.schedule_id:
@@ -76,10 +76,10 @@ class Schedule:
                 SELECT 
                     s.schedule_id AS "id",
                     s.day_of_week AS "День тижня",
-                    s.start_time AS "Час початку",
-                    s.end_time AS "Час завершення",
                     r.route_number AS "Номер маршруту",
-                    t.transport_number AS "Номер транспорту"
+                    t.transport_number AS "Номер транспорту",
+                    s.start_time AS "Час початку",
+                    s.end_time AS "Час завершення"
                 FROM Schedule s
                 JOIN Route r ON s.route_id = r.route_id
                 JOIN Transport t ON s.transport_id = t.transport_id
@@ -90,10 +90,10 @@ class Schedule:
                 {
                     "id": row[0],
                     "День тижня": row[1],
-                    "Час початку": row[2],
-                    "Час завершення": row[3],
-                    "Номер маршруту": row[4],
-                    "Номер транспорту": row[5]
+                    "Номер маршруту": row[2],
+                    "Номер транспорту": row[3],
+                    "Час початку": row[4],
+                    "Час завершення": row[5]
                 }
                 for row in rows
             ]

@@ -75,7 +75,7 @@ class Repair:
                     r.repair_id AS "id",
                     t.transport_number AS "Номер транспорту",
                     r.start_date AS "Дата початку",
-                    r.end_date AS "Дата завершення",
+                    COALESCE(TO_CHAR(r.end_date, 'YYYY-MM-DD'), 'Не завершено') AS "Дата завершення",
                     r.description AS "Опис"
                 FROM Repair r
                 JOIN Transport t ON r.transport_id = t.transport_id

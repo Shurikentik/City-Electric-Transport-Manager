@@ -104,7 +104,7 @@ class DispatcherWidget(QWidget):
         schedule_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         schedule_table_button.clicked.connect(
             lambda: self.view_table("Розклади руху", "schedule",
-                                    Schedule, AddEditScheduleDialog, 1500)
+                                    Schedule, AddEditScheduleDialog, 1820)
         )
         menu_layout.addWidget(schedule_table_button)
 
@@ -121,6 +121,11 @@ class DispatcherWidget(QWidget):
         repair_table_button.setFont(text_font2)
         repair_table_button.setFixedWidth(1250)
         repair_table_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        repair_table_button.clicked.connect(
+            lambda: self.view_table("Ремонтні операції", "repair",
+                                    Repair, None, 2100,
+                                    is_add_button=False, is_edit_button=False)
+        )
         menu_layout.addWidget(repair_table_button)
 
         # Підключення обробників подій для зміни курсора
@@ -248,14 +253,14 @@ class DispatcherWidget(QWidget):
         # Кнопка "Маршрути без розкладу"
         routes_without_schedule_button = QPushButton()
         routes_without_schedule_button.setIcon(QIcon('../resources/icons/route_icon.svg'))
-        routes_without_schedule_button.setText("Маршрути без розкладу")
+        routes_without_schedule_button.setText("Маршрути без розкладу сьогодні")
         routes_without_schedule_button.setIconSize(routes_without_schedule_button.sizeHint() * 3)
         routes_without_schedule_button.setStyleSheet(button_style)
         routes_without_schedule_button.setFont(text_font2)
         routes_without_schedule_button.setFixedWidth(1250)
         routes_without_schedule_button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         routes_without_schedule_button.clicked.connect(
-            lambda: self.view_query_result("Маршрути без розкладу", find_routes_without_schedule,
+            lambda: self.view_query_result("Маршрути без розкладу сьогодні", find_routes_without_schedule_today,
                                            1350)
         )
         statistics_layout.addWidget(routes_without_schedule_button)

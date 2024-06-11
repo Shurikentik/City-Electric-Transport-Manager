@@ -182,7 +182,7 @@ class AddEditScheduleDialog(QDialog):
             # Поєднання елементів списку з індексами
             route_index_map = {}
             for i, route in enumerate(routes):
-                route_index_map[route.route_id] = i
+                route_index_map[route.route_number] = i
 
             # Функція переключення маршруту
             def route_combobox_change(text):
@@ -223,7 +223,7 @@ class AddEditScheduleDialog(QDialog):
         # Текстове поле для часу
         start_time_line_edit = QLineEdit()
         if self.instance:
-            start_time_line_edit.setText(f"{self.instance.start_time}")
+            start_time_line_edit.setText(self.instance.start_time.strftime('%H:%M'))
         start_time_line_edit.setPlaceholderText("Час початку")
         start_time_line_edit.setStyleSheet(text_line_style)
         start_time_line_edit.setFont(text_font4)
@@ -257,7 +257,7 @@ class AddEditScheduleDialog(QDialog):
         # Текстове поле для часу закінчення руху
         end_time_line_edit = QLineEdit()
         if self.instance:
-            end_time_line_edit.setText(f"{self.instance.end_time}")
+            end_time_line_edit.setText(self.instance.end_time.strftime('%H:%M'))
         end_time_line_edit.setPlaceholderText("Час закінчення")
         end_time_line_edit.setStyleSheet(text_line_style)
         end_time_line_edit.setFont(text_font4)
@@ -299,9 +299,95 @@ class AddEditScheduleDialog(QDialog):
         add_edit_button_widget = QWidget()
         add_edit_button_widget.setLayout(add_edit_button_layout)
 
-        # Обробка події натискання кнопки "Додати/Змінити"
+        # Функція для обробки натискання кнопки "Додати/Змінити"
+        def add_edit_schedule():
+            # Перевірка правильності введення часу початку
+            try:
+                start_time = start_time_line_edit.text().strip()
+                end_time = end_time_line_edit.text().strip()
+
+                if (not start_time or start_time == "Час початку"
+                        or not end_time or end_time == "Час закінчення"):
+                    raise ValueError("Час початку і закінчення не можуть бути порожніми")
+
+                # Конвертуємо час у формат datetime
+                from datetime import datetime
+                start_time = datetime.strptime(start_time, '%H:%M')
+                end_time = datetime.strptime(end_time, '%H:%M')
+
+            except ValueError:
+                msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
+                                      "Неправильний формат часу. Використовуйте формат Год:Хв")
+                msg_box.setStyleSheet(message_box_style)
+                msg_box.exec()
+                return
+
+            # Додавання нового розкладу
+            if not self.instance:
+                # Перевірка, чи обрані день тижня, транспорт і маршрут
+                if not (day_of_week_combobox.currentIndex() != -1 and self.transport_id and self.route_id):
+                    msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
+                                          "Ви не обрали день тижня, транспорт або маршрут")
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
+                    return
+
+                day_of_week = day_of_week_combobox.currentText()
+
+                # Перевірка, чи є вже такий розклад у базі даних
+                existing_schedules = Schedule.get_all()
+                for schedule in existing_schedules:
+                    if (schedule.day_of_week == day_of_week and
+                            schedule.transport_id == self.transport_id and
+                            schedule.route_id == self.route_id):
+                        msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
+                                              "Розклад на цей день, транспорт і маршрут вже існує")
+                        msg_box.setStyleSheet(message_box_style)
+                        msg_box.exec()
+                        return
+
+                try:
+                    new_schedule = self.model_class(
+                        day_of_week=day_of_week,
+                        transport_id=self.transport_id,
+                        route_id=self.route_id,
+                        start_time=start_time,
+                        end_time=end_time
+                    )
+                    new_schedule.save()
+                    msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Розклад успішно додано")
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
+                    self.close()
+                except Exception as e:
+                    msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", str(e))
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
+
+            # Зміна існуючого розкладу
+            else:
+                if start_time == self.instance.start_time and end_time == self.instance.end_time:
+                    msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка",
+                                          "Ви не змінили час початку або закінчення")
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
+                    return
+
+                try:
+                    self.instance.start_time = start_time
+                    self.instance.end_time = end_time
+                    self.instance.update()
+                    msg_box = QMessageBox(QMessageBox.Icon.Information, "Успіх", "Розклад успішно змінено")
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
+                    self.close()
+                except Exception as e:
+                    msg_box = QMessageBox(QMessageBox.Icon.Critical, "Помилка", str(e))
+                    msg_box.setStyleSheet(message_box_style)
+                    msg_box.exec()
 
         # Підключення кнопки до команди
+        add_edit_button.clicked.connect(add_edit_schedule)
 
         # Кнопка "Відмінити"
         exit_button = QPushButton()

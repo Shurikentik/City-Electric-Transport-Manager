@@ -98,7 +98,7 @@ def get_transport_under_repair():
             t.transport_id,
             tt.transport_name AS "Тип транспорту",
             t.transport_number AS "Номер транспорту",
-            e.full_name AS "Під керуванням",
+            COALESCE(e.full_name, 'Не призначений') AS "Під керуванням",
             CASE
                 WHEN t.availability THEN 'Доступний'
                 ELSE 'Зайнятий'
@@ -145,18 +145,27 @@ def find_tickets_below_average_price():
         return db.fetch_query_result(query)
 
 
-# Маршрути без розкладу
-def find_routes_without_schedule():
+# Маршрути без розкладу на поточний день
+def find_routes_without_schedule_today():
     query = """
-    SELECT 
-        r.route_id, 
-        r.route_number as "Номер маршруту", 
-        r.start_station as "Початкова станція", 
-        r.end_station as "Кінцева станція"
-    FROM Route r
-    LEFT JOIN Schedule s ON r.route_id = s.route_id
-    WHERE s.schedule_id IS NULL;
-    """
+        SELECT 
+            r.route_id, 
+            r.route_number as "Номер маршруту", 
+            r.start_station as "Початкова станція", 
+            r.end_station as "Кінцева станція"
+        FROM Route r
+        LEFT JOIN Schedule s ON r.route_id = s.route_id 
+        AND s.day_of_week = CASE 
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Monday' THEN 'Понеділок'
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Tuesday' THEN 'Вівторок'
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Wednesday' THEN 'Середа'
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Thursday' THEN 'Четвер'
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Friday' THEN 'П''ятниця'
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Saturday' THEN 'Субота'
+            WHEN TO_CHAR(NOW(), 'FMDay') = 'Sunday' THEN 'Неділя'
+        END
+        WHERE s.schedule_id IS NULL;
+        """
     with Database(host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD) as db:
         return db.fetch_query_result(query)
 
